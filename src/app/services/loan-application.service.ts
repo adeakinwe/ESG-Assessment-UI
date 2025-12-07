@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { map, delay, catchError } from 'rxjs/operators';
 import { Customer, LoanApplication } from '../models/loan-application.model';
 
 @Injectable({ providedIn: 'root' })
@@ -30,16 +30,27 @@ export class LoanApplicationService {
 
   searchCustomer(param: string): Observable<Customer[]> {
     const params = new HttpParams().set('param', param);
-    let url = `${this.apiUrl}/customer/search`;
-    return this.http.get<Customer[]>(url, { params });
+      return this.http.get<Customer[]>(`${this.apiUrl}/customer/search`, { params });
   }
 
-  submitLoanApplication(payload: LoanApplication): Observable<any> {
-    // Real backend call:
-    // return this.http.post(`${this.apiUrl}/loanapplications`, payload);
+  // submitLoanApplication(payload: LoanApplication): Observable<any> {
+  //   // Real backend call:
+  //   return this.http.post(`${this.apiUrl}/loanapplications`, payload);
 
-    // Mock submission for demo:
-    console.log('Submitting loan application:', payload);
-    return of({ success: true }).pipe(delay(500));
+  //   // Mock submission for demo:
+  //   // console.log('Submitting loan application:', payload);
+  //   // return of({ success: true }).pipe(delay(500));
+  // }
+
+  submitLoanApplication(payload: LoanApplication): Observable<any> {
+    return this.http.post(`${this.apiUrl}/loan-application/add`, payload).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error submitting loan application:', error);
+        return of({ success: false, message: 'Failed to submit loan application' });
+      })
+    );
   }
 }

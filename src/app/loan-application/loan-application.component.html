@@ -34,26 +34,27 @@
         <!-- Amount -->
         <div class="form-group">
             <label>Amount</label>
-            <input pInputText type="text" FormatCommaSeparator formControlName="amount" placeholder="Enter amount" />
+            <input pInputText type="number" formControlName="amount" placeholder="Enter amount" />
         </div>
 
         <!-- Currency -->
         <div class="form-group">
             <label>Currency</label>
-            <p-dropdown formControlName="currency" [options]="currencies" placeholder="Select currency">
+            <p-dropdown formControlName="currencyId" [options]="currencies" optionLabel="label" optionValue="value"
+                placeholder="Select currency">
             </p-dropdown>
         </div>
 
         <!-- Tenor -->
         <div class="form-group">
             <label>Tenor (Days)</label>
-            <input pInputText type="number" formControlName="tenorDays" placeholder="Enter tenor in days" />
+            <input pInputText type="number" formControlName="tenorInDays" placeholder="Enter tenor in days" />
         </div>
 
         <!-- Product -->
         <div class="form-group">
             <label>Product</label>
-            <p-dropdown formControlName="product" [options]="products" optionLabel="label" optionValue="value"
+            <p-dropdown formControlName="productId" [options]="products" optionLabel="label" optionValue="value"
                 placeholder="Select product">
             </p-dropdown>
         </div>

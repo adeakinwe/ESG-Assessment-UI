@@ -10,6 +10,7 @@ import { LoanApplicationService } from '../services/loan-application.service';
 import { Customer, LoanApplication } from '../models/loan-application.model';
 import { debounceTime, distinctUntilChanged, catchError, of, switchMap } from 'rxjs';
 import { AutoCompleteSelectEvent } from 'primeng/autocomplete';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-loan-application',
@@ -31,26 +32,31 @@ export class LoanApplicationComponent implements OnInit {
     { label: 'Contingent', value: '4' },
   ];
 
-  currencies = ['NGN', 'USD', 'EUR', 'GBP'];
+  currencies = [
+    { label: 'NGN', value: '1' },
+    { label: 'USD', value: '2' },
+    { label: 'GBP', value: '3' },
+    { label: 'EUR', value: '4' },
+  ];
 
-  constructor(private fb: FormBuilder, private service: LoanApplicationService) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private service: LoanApplicationService) {
     this.form = this.fb.group({
       customerId: [''],
       customerCode: ['', Validators.required],
       customerName: [{ value: '', disabled: true }],
       sector: [{ value: '', disabled: true }],
       amount: ['', Validators.required],
-      currency: ['', Validators.required],
-      tenorDays: ['', Validators.required],
-      product: ['', Validators.required],
+      currencyId: ['', Validators.required],
+      tenorInDays: ['', Validators.required],
+      productId: ['', Validators.required],
       interestRate: ['', Validators.required],
       loanPurpose: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-searchCustomer(event: any) {
+  searchCustomer(event: any) {
     const query = event.query;
 
     // Reset if query is empty or too short
@@ -87,6 +93,7 @@ searchCustomer(event: any) {
   }
 
   submit() {
+    const fm: LoanApplication = { ...this.form.getRawValue() };
     if (this.form.invalid || !this.customerFound) {
       alert('Form invalid or no customer selected');
       return;
@@ -94,8 +101,8 @@ searchCustomer(event: any) {
 
     const payload: LoanApplication = { ...this.form.getRawValue() };
     this.service.submitLoanApplication(payload).subscribe({
-      next: () => alert('Loan application submitted successfully'),
-      error: () => alert('An error occurred while submitting')
-    });
+      next: () => { this.form.reset(), this.toastr.success('Loan application submitted successfully')},
+      error: () => this.toastr.error('An error occurred while submitting')
+    })
   }
 }
