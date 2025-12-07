@@ -1,0 +1,77 @@
+<p-card header="Loan Application" class="loan-card">
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="loan-form">
+
+        <!-- Customer Code -->
+        <div class="form-group">
+            <label>Customer Code</label>
+            <p-autoComplete formControlName="customerCode" [suggestions]="filteredCustomers"
+                (completeMethod)="searchCustomer($event)" [field]="'customerCode'" (onSelect)="selectCustomer($event)"
+                [dropdown]="true" [forceSelection]="true" placeholder="Enter customer code..." [virtualScroll]="true"
+                [itemSize]="38">
+
+                <!-- Custom loading spinner inside dropdown -->
+                <ng-template pTemplate="dropdownicon">
+                    <i *ngIf="loadingCustomer" class="pi pi-spin pi-spinner"></i>
+                    <i *ngIf="!loadingCustomer" class="pi pi-chevron-down"></i>
+                </ng-template>
+
+            </p-autoComplete>
+        </div>
+
+        <!-- Customer Name -->
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input pInputText formControlName="customerName" class="disabled-input" />
+        </div>
+
+        <!-- Sector -->
+        <div class="form-group">
+            <label>Sector</label>
+            <input pInputText formControlName="sector" class="disabled-input" />
+        </div>
+
+        <!-- Amount -->
+        <div class="form-group">
+            <label>Amount</label>
+            <input pInputText type="number" formControlName="amount" placeholder="Enter amount" />
+        </div>
+
+        <!-- Currency -->
+        <div class="form-group">
+            <label>Currency</label>
+            <p-dropdown formControlName="currency" [options]="currencies" placeholder="Select currency">
+            </p-dropdown>
+        </div>
+
+        <!-- Tenor -->
+        <div class="form-group">
+            <label>Tenor (Days)</label>
+            <input pInputText type="number" formControlName="tenorDays" placeholder="Enter tenor in days" />
+        </div>
+
+        <!-- Product -->
+        <div class="form-group">
+            <label>Product</label>
+            <p-dropdown formControlName="product" [options]="products" optionLabel="label" optionValue="value"
+                placeholder="Select product">
+            </p-dropdown>
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="form-group">
+            <label>Interest Rate (%)</label>
+            <input pInputText type="number" formControlName="interestRate" placeholder="Enter interest rate" />
+        </div>
+
+        <!-- Loan Purpose -->
+        <div class="form-group full-width">
+            <label>Loan Purpose</label>
+            <textarea pInputTextarea rows="3" formControlName="loanPurpose" placeholder="State the purpose"></textarea>
+        </div>
+
+        <button pButton type="submit" label="Submit Application" class="submit-btn"></button>
+
+    </form>
+
+</p-card>
