@@ -2,7 +2,7 @@ export interface Customer {
 customerId: number;
 customerCode: string;
 customerName: string;
-sector: string;
+sectorName: string;
 }
 
 

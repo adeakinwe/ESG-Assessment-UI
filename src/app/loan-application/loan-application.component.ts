@@ -8,7 +8,7 @@ import { CardModule } from 'primeng/card';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { LoanApplicationService } from '../services/loan-application.service';
 import { Customer, LoanApplication } from '../models/loan-application.model';
-import { debounceTime, distinctUntilChanged, catchError, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, catchError, of, switchMap } from 'rxjs';
 import { AutoCompleteSelectEvent } from 'primeng/autocomplete';
 
 @Component({
@@ -50,18 +50,25 @@ export class LoanApplicationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  searchCustomer(event: any) {
+searchCustomer(event: any) {
     const query = event.query;
-    if (!query) {
+
+    // Reset if query is empty or too short
+    if (!query || query.length < 4) {
       this.filteredCustomers = [];
       return;
     }
 
     this.loadingCustomer = true;
-    this.service.searchCustomer(query).pipe(
-      debounceTime(300),
+
+    of(query).pipe(
+      debounceTime(300), // wait 300ms after typing stops
       distinctUntilChanged(),
-      catchError(() => of([]))
+      switchMap(q =>
+        this.service.searchCustomer(q).pipe(
+          catchError(() => of([])) // fallback on error
+        )
+      )
     ).subscribe(customers => {
       this.filteredCustomers = customers;
       this.loadingCustomer = false;
@@ -75,7 +82,7 @@ export class LoanApplicationComponent implements OnInit {
       customerId: customer.customerId,
       customerCode: customer.customerCode,
       customerName: customer.customerName,
-      sector: customer.sector
+      sector: customer.sectorName
     }, { emitEvent: false });
   }
 

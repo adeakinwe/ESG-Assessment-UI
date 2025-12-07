@@ -1,4 +1,4 @@
-<p-card header="Loan Application" class="loan-card">
+<p-card header="Credit Application" class="loan-card">
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="loan-form">
 
@@ -34,7 +34,7 @@
         <!-- Amount -->
         <div class="form-group">
             <label>Amount</label>
-            <input pInputText type="number" formControlName="amount" placeholder="Enter amount" />
+            <input pInputText type="text" FormatCommaSeparator formControlName="amount" placeholder="Enter amount" />
         </div>
 
         <!-- Currency -->
