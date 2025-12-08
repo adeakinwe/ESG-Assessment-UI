@@ -39,6 +39,7 @@ constructor(private router: Router) {}
 
 items = [
   { label: 'Dashboard', icon: 'pi pi-home', command: () => this.router.navigate(['/dashboard']) },
-  { label: 'Credit Application', icon: 'pi pi-file', command: () => this.router.navigate(['/loan-application']) }
+  { label: 'Credit Application', icon: 'pi pi-file', command: () => this.router.navigate(['/loan-application']) },
+  { label: 'Credit Application List', icon: 'pi pi-file', command: () => this.router.navigate(['/loan-applications']) }
 ];
 }

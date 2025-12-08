@@ -1,11 +1,14 @@
 import { Route, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoanApplicationComponent } from './loan-application/loan-application.component';
+import { LoanApplicationListComponent } from './loan-application-list/loan-application-list.component';
+import { EsgAssessmentComponent } from './esg-assessment/esg-assessment.component';
 
 export const routes: Route[] = [
 { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 { path: 'dashboard', component: DashboardComponent },
 //{ path: 'profile-customer', component: ProfileCustomerComponent },
 { path: 'loan-application', component: LoanApplicationComponent },
-//{ path: 'credit-applications', component: CreditApplicationsComponent }
+{ path: 'loan-applications', component: LoanApplicationListComponent },
+{ path: 'esg-assessment/:id', component: EsgAssessmentComponent },
 ];

@@ -7,8 +7,8 @@
             <label>Customer Code</label>
             <p-autoComplete formControlName="customerCode" [suggestions]="filteredCustomers"
                 (completeMethod)="searchCustomer($event)" [field]="'customerCode'" (onSelect)="selectCustomer($event)"
-                [dropdown]="true" [forceSelection]="true" placeholder="Enter customer code..." [virtualScroll]="true"
-                [itemSize]="38">
+                [dropdown]="true" [forceSelection]="true" placeholder="search customer code, customer name (min 4 chars)" [virtualScroll]="true"
+                [itemSize]="60">
 
                 <!-- Custom loading spinner inside dropdown -->
                 <ng-template pTemplate="dropdownicon">

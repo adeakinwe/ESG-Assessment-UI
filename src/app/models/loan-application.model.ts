@@ -7,6 +7,7 @@ sectorName: string;
 
 
 export interface LoanApplication {
+loanApplicationId: number;
 customerId: number;
 customerCode: string;
 customerName: string;

@@ -1,0 +1,63 @@
+.esg-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  box-shadow: 0 4px 20px #00000010;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.esg-table th {
+  background: #e8f6ec;
+  padding: 14px;
+  color: #145a32;
+  text-align: left;
+}
+
+.esg-table td {
+  padding: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.result-box {
+  padding: 15px;
+  background: #f6fffa;
+  border: 1px solid #d7f5e0;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.rating.Low\ Risk {
+  color: #1e8449;
+  font-weight: bold;
+}
+
+.rating.Medium\ Risk {
+  color: #b7950b;
+  font-weight: bold;
+}
+
+.rating.High\ Risk {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.btn-approve,
+.btn-reject {
+  margin-top: 20px;
+  padding: 12px 22px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-approve {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.btn-reject {
+  background: #e74c3c;
+  color: #fff;
+}

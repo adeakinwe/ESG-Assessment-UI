@@ -53,4 +53,8 @@ export class LoanApplicationService {
       })
     );
   }
+
+    getLoanApplications(): Observable<LoanApplication[]> {
+      return this.http.get<LoanApplication[]>(`${this.apiUrl}/loan-application/all`);
+    }
 }
