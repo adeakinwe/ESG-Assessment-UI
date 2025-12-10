@@ -76,8 +76,8 @@ export class EsgAssessmentComponent implements OnInit {
       .reduce((a, b) => a + b, 0);
 
     // Determine rating
-    if (this.totalScore >= 35) this.riskRating = 'Low Risk';
-    else if (this.totalScore >= 20) this.riskRating = 'Medium Risk';
+    if (this.totalScore <= 15) this.riskRating = 'Low Risk';
+    else if (this.totalScore > 15 && this.totalScore <= 30) this.riskRating = 'Medium Risk';
     else this.riskRating = 'High Risk';
   }
 }
