@@ -1,43 +1,121 @@
-.loan-card {
-  width: 650px;
-  margin: 30px auto;
-  padding: 20px;
+/* Page Background */
+.loan-page {
+    background: #f6fdf7;
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
+/* Top Header */
+.loan-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #0e7c3a;
+    padding: 1rem 2rem;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+
+.loan-header h2 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Card */
+.loan-card.fancy-card {
+    width: 750px;
+    margin: 40px auto;
+    border-radius: 18px !important;
+    background: #ffffff;
+    padding: 0 25px 25px 25px;
+    box-shadow: 0 5px 14px rgba(0, 128, 0, 0.10);
+    border: 1px solid #d7ecd9;
+}
+
+/* Form Grid */
 .loan-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
 }
 
+/* Form Group */
 .form-group {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group.full-width {
-  grid-column: span 2;
+    grid-column: span 2;
 }
 
+/* Label */
 label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
+    font-weight: 600;
+    color: #0d5f30;
+    margin-bottom: 6px;
 }
 
-input, p-dropdown, p-autocomplete, textarea {
-  width: 100% !important;
+/* All Inputs */
+.green-input ::ng-deep .p-inputtext,
+.green-input ::ng-deep .p-dropdown,
+.green-input ::ng-deep .p-autocomplete,
+.green-input,
+textarea.green-input {
+    width: 100% !important;
+    border-radius: 10px !important;
 }
 
+/* Input Styling */
+:host ::ng-deep .p-inputtext {
+    background: #f8fff9 !important;
+    border: 1px solid #cbead0 !important;
+    padding: 10px 12px;
+    transition: all 0.2s ease;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+    border-color: #0e7c3a !important;
+    box-shadow: 0 0 8px rgba(14, 124, 58, 0.25);
+}
+
+/* Dropdown */
+:host ::ng-deep .p-dropdown {
+    background: #f8fff9 !important;
+    border: 1px solid #cbead0 !important;
+}
+
+:host ::ng-deep .p-dropdown:hover {
+    border-color: #0e7c3a !important;
+}
+
+/* AutoComplete */
+:host ::ng-deep .p-autocomplete {
+    background: #f8fff9 !important;
+}
+
+/* Disabled Input */
 .disabled-input {
-  background: #f3f3f3 !important;
-  opacity: 0.9;
+    background: #edf7ef !important;
+    opacity: 1 !important;
+    border: 1px solid #c7e3cb !important;
 }
 
-.submit-btn {
-  grid-column: span 2;
-  margin-top: 10px;
-  padding: 12px !important;
-  font-size: 16px;
-  font-weight: 600;
+/* Submit Button */
+.fancy-submit {
+    grid-column: span 2;
+    background: #0e7c3a !important;
+    border: none !important;
+    font-size: 16px;
+    font-weight: 700 !important;
+    padding: 14px !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    box-shadow: 0 4px 10px rgba(14, 124, 58, 0.25);
+    transition: 0.2s ease;
+}
+
+.fancy-submit:hover {
+    background: #0c6a32 !important;
+    box-shadow: 0 5px 12px rgba(14, 124, 58, 0.35);
 }

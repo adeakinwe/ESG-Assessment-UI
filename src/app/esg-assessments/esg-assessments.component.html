@@ -1,0 +1,40 @@
+<div class="esg-page">
+
+    <!--  Top Header  -->
+    <header class="esg-header">
+        <h2>🌿 ESG Assessment Checklist</h2>
+    </header>
+
+    <div class="esg-container">
+
+        <p-card *ngFor="let item of checklistItems" class="esg-card">
+
+            <div class="esg-card-header">
+                <h3>{{ item.item }}</h3>
+                <span class="badge">{{ item.category }}</span>
+            </div>
+
+            <div class="esg-meta">
+                <span class="meta-label">Indicator:</span>
+                <span class="meta-value">{{ item.indicatorType }}</span>
+
+                <span class="meta-label">Weight:</span>
+                <span class="meta-value weight">{{ item.weight }}</span>
+            </div>
+
+            <div class="response-section">
+                <label class="response-label">Select Response:</label>
+
+                <p-selectButton 
+                    [options]="item.responses"
+                    optionLabel="label"
+                    optionValue="responseValue"
+                    [(ngModel)]="selectedResponses[item.checklistItemId]"
+                    class="response-button">
+                </p-selectButton>
+            </div>
+        </p-card>
+
+    </div>
+
+</div>

@@ -1,45 +1,123 @@
-.esg-panel {
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.08);
-  padding: 0.5rem;
+/* ===============================
+   PAGE HEADER
+================================*/
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 1.5rem;
 }
 
-.esg-table .p-datatable-header {
-  border-bottom: none !important;
-}
-
-.esg-table table {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.p-datatable .p-datatable-thead > tr > th {
-  background: #e8f6ec !important;
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
   color: #145a32;
-  font-weight: 600;
-  border: none;
-  padding: 14px;
+  margin: 0;
 }
 
-.p-datatable .p-datatable-tbody > tr > td {
+.subtitle {
+  font-size: 0.95rem;
+  color: #1e3924;
+  margin-top: 0.3rem;
+  opacity: 0.8;
+}
+
+.shadow-btn {
+  box-shadow: 0 4px 14px rgba(34, 139, 34, 0.3);
+  border-radius: 10px;
+}
+
+/* ===============================
+   PANEL CONTAINER
+================================*/
+.esg-panel {
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 28px rgba(0, 80, 40, 0.08);
+  padding: 1rem !important;
+  border: 1px solid #e0f2e9;
+}
+
+/* ===============================
+   TABLE HEADER
+================================*/
+.p-datatable .p-datatable-thead > tr > th {
+  background: linear-gradient(135deg, #e6f4ea, #d9f7e5) !important;
+  color: #145a32 !important;
+  font-weight: 700;
   padding: 14px;
   border: none;
   font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   TABLE BODY
+================================*/
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 14px;
+  border: none;
+  font-size: 0.93rem;
   color: #1e3924;
 }
 
-.p-datatable .p-datatable-tbody > tr:hover {
-  background: #d6f5dd !important;
-  cursor: pointer;
+.table-row {
+  transition: all 0.25s ease;
 }
 
-.clickable-row {
-  transition: background 0.25s ease;
+.table-row:hover {
+  background: #e9fce9 !important;
+  transform: scale(1.01);
 }
 
+/* ===============================
+   PAGINATOR
+================================*/
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
   background: #2ecc71 !important;
   border-color: #27ae60 !important;
+  color: white !important;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+}
+
+/* ===============================
+   STATUS BADGES
+================================*/
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  display: inline-block;
+  letter-spacing: 0.2px;
+}
+
+.status-approved {
+  background: #d4efdf;
+  color: #1e8449;
+  border: 1px solid #a9dfbf;
+}
+
+.status-pending {
+  background: #fcf3cf;
+  color: #b7950b;
+  border: 1px solid #f7dc6f;
+}
+
+.status-referred {
+  background: #fcdbcf;
+  color: #5bb70b;
+  border: 1px solid #f7dc6f;
+}
+.status-rejected {
+  background: #f5b7b1;
+  color: #922b21;
+  border: 1px solid #f1948a;
+}
+
+.status-in-progress {
+  background: #d6eaf8;
+  color: #1f618d;
+  border: 1px solid #aed6f1;
 }

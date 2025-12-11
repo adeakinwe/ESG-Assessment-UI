@@ -1,0 +1,112 @@
+/* Page Wrapper */
+.esg-page {
+    font-family: 'Inter', sans-serif;
+    background: #f6fdf7;
+    min-height: 100vh;
+}
+
+/* Header */
+.esg-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #0e7c3a;
+    padding: 1rem 2rem;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.esg-header h2 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Container */
+.esg-container {
+    padding: 2rem 2rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Card Styling */
+.esg-card {
+    border-radius: 18px !important;
+    border: 1px solid #d2ead6;
+    background: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 5px 12px rgba(0, 128, 0, 0.08);
+}
+
+/* Card Header */
+.esg-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.esg-card-header h3 {
+    font-size: 1.2rem;
+    color: #0c5f2e;
+    margin: 0;
+}
+
+.badge {
+    background: #daf5df;
+    color: #0c682a;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Meta Section */
+.esg-meta {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    color: #2e5a3d;
+}
+
+.meta-label {
+    font-weight: 600;
+}
+
+.weight {
+    background: #e1ffe1;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+/* SelectButton Styling */
+.response-section {
+    margin-top: 1rem;
+}
+
+.response-label {
+    display: block;
+    font-weight: 600;
+    color: #0e7c3a;
+    margin-bottom: 6px;
+}
+
+/* MAKE SELECT BUTTON GREEN AND BEAUTIFUL */
+:host ::ng-deep .p-selectbutton .p-button {
+    border-radius: 25px !important;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    background: #e8f8ec;
+    border: 1px solid #bde7c7;
+    color: #0c6830;
+}
+
+:host ::ng-deep .p-selectbutton .p-button.p-highlight {
+    background: #0e7c3a !important;
+    border-color: #0e7c3a !important;
+    color: #fff !important;
+    box-shadow: 0 3px 8px rgba(0, 128, 0, 0.25);
+}
+
+:host ::ng-deep .p-selectbutton .p-button:hover {
+    background: #d7f4dd !important;
+}

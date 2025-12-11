@@ -14,43 +14,43 @@ import { Router } from '@angular/router';
   styleUrl: './loan-application-list.component.css'
 })
 export class LoanApplicationListComponent implements OnInit {
-loanApplications: LoanApplication[] = [];
+  loanApplications: LoanApplication[] = [];
 
   ngOnInit() {
     this.loadLoans();
   }
 
-  constructor( private router: Router, private loanService: LoanApplicationService) { }
+  constructor(private router: Router, private loanService: LoanApplicationService) { }
 
   loanApp = [
-  {
-    id: 1,
-    customerName: "GreenTech Industries",
-    sector: "Renewable Energy",
-    product: "ESG Term Loan",
-    amount: 50000000,
-    interest: 6.5,
-    currency: "USD"
-  },
-  {
-    id: 2,
-    customerName: "EcoBuild Ltd",
-    sector: "Construction",
-    product: "Sustainability Loan",
-    amount: 15000000,
-    interest: 5.2,
-    currency: "NGN"
+    {
+      id: 1,
+      customerName: "GreenTech Industries",
+      sector: "Renewable Energy",
+      product: "ESG Term Loan",
+      amount: 50000000,
+      interest: 6.5,
+      currency: "USD"
+    },
+    {
+      id: 2,
+      customerName: "EcoBuild Ltd",
+      sector: "Construction",
+      product: "Sustainability Loan",
+      amount: 15000000,
+      interest: 5.2,
+      currency: "NGN"
+    }
+  ];
+
+  onRowSelected(event: any) {
+    console.log("Selected loan:", event.data);
+
+    // Navigate, open modal, load details, etc.
+    // this.router.navigate(['/loan-details', event.data.id]);
   }
-];
 
-onRowSelected(event: any) {
-  console.log("Selected loan:", event.data);
-
-  // Navigate, open modal, load details, etc.
-  // this.router.navigate(['/loan-details', event.data.id]);
-}
-
-loadLoans() {
+  loadLoans() {
     this.loanService.getLoanApplications().subscribe({
       next: (data) => this.loanApplications = data,
       error: (err) => console.error('Error fetching loans:', err)
@@ -58,6 +58,25 @@ loadLoans() {
   }
 
   openAssessment(row: LoanApplication) {
-  this.router.navigate(['/esg-assessment', row.loanApplicationId]);
+    this.router.navigate(['/esg-assessment', row.loanApplicationId]);
+  }
+
+  getStatusClass(statusId: number): string {
+    switch (statusId) {
+      case 0:
+        return 'status-pending';
+      case 1:
+        return 'status-in-progress';
+      case 2:
+        return 'status-approved';
+      case 3:
+        return 'status-rejected';
+      case 4:
+        return 'status-in-progress';
+      case 5:
+        return 'status-referred';
+      default:
+        return 'status-pending';
+    }
   }
 }
