@@ -2,7 +2,6 @@ import { Route, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoanApplicationComponent } from './loan-application/loan-application.component';
 import { LoanApplicationListComponent } from './loan-application-list/loan-application-list.component';
-import { EsgAssessmentComponent } from './esg-assessment/esg-assessment.component';
 import { EsgAssessmentsComponent } from './esg-assessments/esg-assessments.component';
 
 export const routes: Route[] = [
