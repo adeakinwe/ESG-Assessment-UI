@@ -11,4 +11,11 @@ export class ChecklistService {
   getChecklist(): Observable<ChecklistItem[]> {
     return this.http.get<ChecklistItem[]>(`${this.apiUrl}/checklist-item`);
   }
+
+  submitAssessment(payload: any) {
+  return this.http.post(
+    `${this.apiUrl}/submit-esg-assessment`,
+    payload
+  );
+}
 }

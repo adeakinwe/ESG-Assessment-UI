@@ -14,3 +14,21 @@ export interface ChecklistItem {
   responseType: string;
   responses: ChecklistResponseValue[];
 }
+
+export interface ChecklistAssessment {
+  checklistItemId: number;
+  item: string;
+  weight: number;
+  responseTypeId: number;
+  responses: {
+    responseTypeId: number;
+    label: string;
+    score: number;
+  }[];
+  selectedResponse?: {
+    responseTypeId: number;
+    score: number;
+  };
+  comment?: string;
+}
+

@@ -30,11 +30,24 @@
                     optionLabel="label"
                     optionValue="responseValue"
                     [(ngModel)]="selectedResponses[item.checklistItemId]"
-                    class="response-button">
+                    class="response-button"
+                    (onChange)="onSelect(item.checklistItemId)">
                 </p-selectButton>
             </div>
+
         </p-card>
 
     </div>
+
+    <!-- ✅ SUBMIT BAR -->
+    <footer class="esg-submit-bar">
+        <button
+            pButton
+            label="Submit ESG Assessment"
+            icon="pi pi-check"
+            class="submit-btn"
+            (click)="submitAssessment()">
+        </button>
+    </footer>
 
 </div>
