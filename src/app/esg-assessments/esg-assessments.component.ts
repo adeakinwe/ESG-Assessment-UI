@@ -85,7 +85,7 @@ export class EsgAssessmentsComponent {
     // 3️⃣ Submit once
     this.checklistService.submitAssessment(body).subscribe({
       next: (res: any) => alert(`${res.message}`),
-      error: (err) => alert(`Submission failed: ${err.message || err.statusText}`)
+      error: (err) => alert(`Submission failed: ${err.error.message || err.statusText}`)
     });
   }
 }
