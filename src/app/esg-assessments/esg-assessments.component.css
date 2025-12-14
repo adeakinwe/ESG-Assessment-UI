@@ -136,3 +136,25 @@
 .submit-btn:hover {
     background: #e8f8ec !important;
 }
+
+:host ::ng-deep .esg-confirm-dialog .p-confirm-dialog {
+  border-radius: 16px;
+}
+
+:host ::ng-deep .esg-confirm-dialog .p-confirm-dialog-header {
+  background: #0e7c3a;
+  color: white;
+}
+
+:host ::ng-deep .esg-confirm-dialog .p-confirm-dialog-message {
+  font-weight: 500;
+}
+
+.submit-section {
+  position: sticky;
+  bottom: 0;
+  background: #f6fdf7;
+  padding: 1.5rem;
+  text-align: right;
+  box-shadow: 0 -3px 10px rgba(0, 128, 0, 0.12);
+}

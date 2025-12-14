@@ -18,4 +18,10 @@ export class ChecklistService {
     payload
   );
 }
+
+getAssessmentByLoan(loanApplicationId: number) {
+  return this.http.get<any[]>(
+    `${this.apiUrl}/loan-application/${loanApplicationId}`
+  );
+}
 }

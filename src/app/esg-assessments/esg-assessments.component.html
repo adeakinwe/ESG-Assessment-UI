@@ -45,9 +45,18 @@
             pButton
             label="Submit ESG Assessment"
             icon="pi pi-check"
-            class="submit-btn"
-            (click)="submitAssessment()">
+            class="p-button-success submit-btn"
+            [disabled]="!isAssessmentComplete()"
+            (click)="confirmSubmit()">
         </button>
     </footer>
 
 </div>
+<p-confirmDialog
+  header="Confirm ESG Submission"
+  icon="pi pi-exclamation-triangle"
+  acceptLabel="Yes, Submit"
+  rejectLabel="Review Again"
+  styleClass="esg-confirm-dialog">
+</p-confirmDialog>
+
