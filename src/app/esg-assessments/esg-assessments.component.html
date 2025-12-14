@@ -4,6 +4,17 @@
     <header class="esg-header">
         <h2>🌿 ESG Assessment Checklist</h2>
     </header>
+<div class="progress-wrapper">
+  <div class="progress-text">
+    {{ answeredCount }} / {{ totalCount }} answered
+  </div>
+
+  <p-progressBar
+    [value]="(answeredCount / totalCount) * 100"
+    [showValue]="false"
+    styleClass="green-progress">
+  </p-progressBar>
+</div>
 
     <div class="esg-container">
 
@@ -38,6 +49,10 @@
         </p-card>
 
     </div>
+
+    <div class="incomplete-hint" *ngIf="!isAssessmentComplete()">
+  ⚠️ Please complete all checklist items before submitting.
+</div>
 
     <!-- ✅ SUBMIT BAR -->
     <footer class="esg-submit-bar">

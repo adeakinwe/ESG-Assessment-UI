@@ -158,3 +158,43 @@
   text-align: right;
   box-shadow: 0 -3px 10px rgba(0, 128, 0, 0.12);
 }
+
+.incomplete-hint {
+  margin: 1.5rem 0;
+  padding: 12px 16px;
+  background: #fff8e1;
+  border-left: 4px solid #f4c430;
+  color: #7a5a00;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Progress Wrapper */
+.progress-wrapper {
+    position: sticky;
+    top: 64px; /* Match the height of your .esg-header */
+    z-index: 15; /* Above form content but below submit bar if needed */
+    background: #f6fdf7; /* Match page background to avoid overlay issues */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Progress Text */
+.progress-text {
+  font-weight: 700;
+  color: #0e7c3a;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PrimeNG Progress Bar */
+:host ::ng-deep .green-progress .p-progressbar {
+  height: 10px;
+  border-radius: 8px;
+  background: #e0f4e8;
+}
+
+:host ::ng-deep .green-progress .p-progressbar-value {
+  background: linear-gradient(90deg, #2ecc71, #0e7c3a);
+}

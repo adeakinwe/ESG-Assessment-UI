@@ -10,6 +10,7 @@ import { CardModule } from 'primeng/card';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
   selector: 'app-esg-assessments',
@@ -21,7 +22,8 @@ import { ConfirmationService } from 'primeng/api';
     ButtonModule,
     CardModule,
     SelectButtonModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ProgressBarModule
   ],
   templateUrl: './esg-assessments.component.html',
   styleUrl: './esg-assessments.component.css'
@@ -52,6 +54,14 @@ export class EsgAssessmentsComponent {
       error: (err) => console.error(err)
     });
   }
+
+  get answeredCount(): number {
+  return Object.keys(this.selectedResponses).length;
+}
+
+get totalCount(): number {
+  return this.checklistItems.length;
+}
 
 onSelect(itemId: number) {
   console.log(
