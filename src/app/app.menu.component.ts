@@ -41,6 +41,6 @@ items = [
   { label: 'Dashboard', icon: 'pi pi-home', command: () => this.router.navigate(['/dashboard']) },
   { label: 'Credit Application', icon: 'pi pi-credit-card', command: () => this.router.navigate(['/loan-application']) },
   { label: 'ESG Assessment', icon: 'pi pi-pencil', command: () => this.router.navigate(['/loan-applications']) },
-  { label: 'ESG Checklist', icon: 'pi pi-globe', command: () => this.router.navigate(['/esg-checklist']) }
+  // { label: 'ESG Checklist', icon: 'pi pi-globe', command: () => this.router.navigate(['/esg-checklist']) }
 ];
 }

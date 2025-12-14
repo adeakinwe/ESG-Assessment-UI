@@ -24,4 +24,10 @@ getAssessmentByLoan(loanApplicationId: number) {
     `${this.apiUrl}/loan-application/${loanApplicationId}`
   );
 }
+
+getEsgAssessmentSummary(loanApplicationId: number) {
+  return this.http.get<any[]>(
+    `${this.apiUrl}/checklist-summary/${loanApplicationId}`
+  );
+}
 }

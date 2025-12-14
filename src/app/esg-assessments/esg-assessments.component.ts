@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChecklistService } from '../services/checklist.service';
 import { ChecklistItem } from '../models/checklist.model';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { ChipModule } from 'primeng/chip';
 @Component({
   selector: 'app-esg-assessments',
   standalone: true,
@@ -23,13 +23,16 @@ import { ProgressBarModule } from 'primeng/progressbar';
     CardModule,
     SelectButtonModule,
     ConfirmDialogModule,
-    ProgressBarModule
+    ProgressBarModule,
+    ChipModule
   ],
   templateUrl: './esg-assessments.component.html',
   styleUrl: './esg-assessments.component.css'
 })
 export class EsgAssessmentsComponent {
+  @ViewChild('summarySection') summarySection!: ElementRef;
 
+  summary: any = null; // Holds the API summary
   loanApplicationId!: number;
   checklistItems: ChecklistItem[] = [];
 
@@ -131,7 +134,11 @@ onSelect(itemId: number) {
 
     // 3️⃣ Submit once
     this.checklistService.submitAssessment(body).subscribe({
-      next: (res: any) => alert(`${res.message}`),
+      next: (res: any) => {
+        alert(`${res.message}`);
+        // ✅ Reload summary after submission
+        this.loadSummary();
+      },
       error: (err) => alert(`Submission failed: ${err.error.message || err.statusText}`)
     });
   }
@@ -158,6 +165,24 @@ onSelect(itemId: number) {
             this.selectedResponses[item.checklistItemId] = response.responseValue;
           }
         });
+      },
+      error: (err: any) => console.error(err)
+    });
+  }
+
+  getRatingClass(rating: string) {
+  return rating === 'High' ? 'p-chip-success' :
+         rating === 'Medium' ? 'p-chip-warning' : 'p-chip-danger';
+}
+  loadSummary() {
+    this.checklistService.getEsgAssessmentSummary(this.loanApplicationId).subscribe({
+      next: (res: any) => {
+        this.summary = res;
+
+        // ✅ Auto scroll to summary
+        setTimeout(() => {
+          this.summarySection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
       },
       error: (err: any) => console.error(err)
     });

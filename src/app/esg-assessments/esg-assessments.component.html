@@ -15,6 +15,37 @@
     styleClass="green-progress">
   </p-progressBar>
 </div>
+<!-- ESG Summary - Visible only after submission -->
+<div #summarySection class="esg-summary" *ngIf="summary">
+
+  <div class="summary-header-bar">
+    <h3>✅ ESG Assessment Summary</h3>
+    <p-chip [label]="summary.rating" [styleClass]="getRatingClass(summary.rating)"></p-chip>
+  </div>
+
+  <div class="summary-overview">
+    <div class="average-score-box">
+      <span>Average Score</span>
+      <h2>{{ summary.averageScore | number:'1.0-1' }}</h2>
+      <p>{{ summary.rating }} Risk</p>
+      <p-progressBar
+        [value]="summary.averageScore"
+        [showValue]="true"
+        styleClass="average-progress">
+      </p-progressBar>
+    </div>
+
+    <div class="category-breakdown">
+      <p-card *ngFor="let d of summary.details" class="summary-card">
+        <h4>{{ d.category }}</h4>
+        <p>Score: {{ d.score }}</p>
+        <p>Weight: {{ d.weight }}</p>
+        <p-progressBar [value]="(d.score*d.weight) / summary.weightedScore * 100" [showValue]="true"></p-progressBar>
+      </p-card>
+    </div>
+  </div>
+
+</div>
 
     <div class="esg-container">
 

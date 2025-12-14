@@ -11,5 +11,5 @@ export const routes: Route[] = [
 { path: 'loan-application', component: LoanApplicationComponent },
 { path: 'loan-applications', component: LoanApplicationListComponent },
 { path: 'esg-assessment/:id', component: EsgAssessmentsComponent },
-{ path: 'esg-checklist', component: EsgAssessmentsComponent },
+// { path: 'esg-checklist', component: EsgAssessmentsComponent },
 ];
