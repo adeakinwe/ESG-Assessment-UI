@@ -33,6 +33,7 @@
         <th pSortableColumn="tenorInDays">Tenor (Days) <p-sortIcon field="tenorInDays"></p-sortIcon></th>
         <th pSortableColumn="sectorName">Sector <p-sortIcon field="sectorName"></p-sortIcon></th>
         <th>Status</th>
+        <th>ESG Risk Rating</th>
       </tr>
     </ng-template>
 
@@ -51,6 +52,11 @@
             {{ row.statusName }}
           </span>
         </td>
+        <td>
+        <span class="risk-badge" [ngClass]="getRiskClass(row.riskRatingId)">
+          {{ row.riskRating }}
+        </span>
+      </td>
       </tr>
     </ng-template>
 

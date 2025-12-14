@@ -79,4 +79,18 @@ export class LoanApplicationListComponent implements OnInit {
         return 'status-pending';
     }
   }
+
+  getRiskClass(riskRatingId: number): string {
+  switch (riskRatingId) {
+    case 1:
+      return 'risk-low';
+    case 2:
+      return 'risk-medium';
+    case 3:
+      return 'risk-high';
+    default:
+      return 'risk-not-rated';
+  }
+}
+
 }

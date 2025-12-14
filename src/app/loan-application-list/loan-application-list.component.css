@@ -121,3 +121,46 @@
   color: #1f618d;
   border: 1px solid #aed6f1;
 }
+
+/* ===============================
+   ESG Risk Badges
+================================*/
+.risk-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  display: inline-block;
+  letter-spacing: 0.2px;
+}
+
+.risk-low {
+  background: #d4efdf;
+  color: #1e8449;
+  border: 1px solid #a9dfbf;
+}
+
+.risk-medium {
+  background: #fcf3cf;
+  color: #b7950b;
+  border: 1px solid #f7dc6f;
+}
+
+.risk-high {
+  background: #f5b7b1;
+  color: #922b21;
+  border: 1px solid #f1948a;
+}
+
+.risk-not-rated {
+  background: #f0f8f0;   /* very light green / neutral */
+  color: #6b8f7a;        /* muted green for text */
+  border: 1px solid #cdebd7; /* subtle green border */
+  border-radius: 20px;   /* consistent with other badges */
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-block;
+  text-transform: capitalize;
+}

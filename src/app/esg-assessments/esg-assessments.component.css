@@ -230,21 +230,28 @@
 :host ::ng-deep .p-chip-danger  { background-color: #e74c3c !important; color: #fff !important; }
 
 /* Overview layout */
+
 .summary-overview {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-/* Average score box */
-.average-score-box {
-  flex: 1 1 250px;
-  background: #e8f8ec;
+.average-score-box,
+.summary-comment-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.summary-comment-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #d7f4dd;
   padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,128,0,0.1);
+  box-shadow: 0 6px 18px rgba(0,128,0,0.1);
 }
 
 .average-score-box span {
@@ -309,4 +316,158 @@
 
 .summary-card .p-progressbar-value {
   background: linear-gradient(90deg, #2ecc71, #0e7c3a);
+}
+
+/* Base bar */
+:host ::ng-deep .average-progress .p-progressbar {
+  height: 16px;
+  border-radius: 10px;
+  background: #e6f4ea;
+}
+
+/* LOW RISK — SUCCESS (Green) */
+:host ::ng-deep .avg-success .p-progressbar-value {
+  background: linear-gradient(90deg, #2ecc71, #0e7c3a);
+}
+
+/* MEDIUM RISK — WARNING (Amber-Green) */
+:host ::ng-deep .avg-warning .p-progressbar-value {
+  background: linear-gradient(90deg, #f1c40f, #d4ac0d);
+}
+
+/* HIGH RISK — DANGER (Soft Red, still ESG-friendly) */
+:host ::ng-deep .avg-danger .p-progressbar-value {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+/* Metrics card layout */
+/* .metrics-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+} */
+
+.metrics-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Metric column */
+/* .metric-col {
+  flex: 1;
+  text-align: center;
+} */
+
+.metric-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Divider between metrics */
+.metric-divider {
+  width: 1px;
+  height: 70%;
+  background: #cdebd7;
+}
+
+/* Metric labels */
+.metric-col span {
+  font-weight: 600;
+  color: #0c6830;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Metric values */
+.metric-col h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #0e7c3a;
+}
+
+/* Summary comment card */
+/* .summary-comment-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #d7f4dd;
+  box-shadow: 0 4px 12px rgba(0,128,0,0.08);
+} */
+
+/* Label */
+.summary-comment-card label {
+  display: block;
+  font-weight: 700;
+  color: #0e7c3a;
+  margin-bottom: 0.5rem;
+}
+
+/* Textarea */
+.summary-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #bde7c7;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  background: #f6fdf7;
+  resize: vertical;
+}
+
+/* Focus state */
+.summary-textarea:focus {
+  outline: none;
+  border-color: #0e7c3a;
+  box-shadow: 0 0 0 2px rgba(14,124,58,0.15);
+}
+
+/* Hint text */
+.comment-hint {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6b8f7a;
+}
+
+@media (max-width: 1024px) {
+  .summary-overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .summary-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assessment-comment-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f0fff4;
+  border-radius: 14px;
+  border-left: 6px solid #2e7d32;
+  box-shadow: 0 6px 16px rgba(0,128,0,0.12);
+}
+
+.assessment-comment-card label {
+  font-weight: 600;
+  color: #1b5e20;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.assessment-textarea {
+  width: 100%;
+  margin-top: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #c8e6c9;
+}
+
+.required {
+  color: #c62828;
 }

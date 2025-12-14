@@ -23,27 +23,53 @@
     <p-chip [label]="summary.rating" [styleClass]="getRatingClass(summary.rating)"></p-chip>
   </div>
 
-  <div class="summary-overview">
-    <div class="average-score-box">
-      <span>Average Score</span>
-      <h2>{{ summary.averageScore | number:'1.0-1' }}</h2>
-      <p>{{ summary.rating }} Risk</p>
-      <p-progressBar
-        [value]="summary.averageScore"
-        [showValue]="true"
-        styleClass="average-progress">
-      </p-progressBar>
+<div class="summary-overview">
+
+  <!-- Average Score -->
+  <div class="average-score-box">
+    <span>Average Score</span>
+    <h2>{{ summary.averageScore | number:'1.0-1' }}</h2>
+    <p>{{ summary.rating }} Risk</p>
+
+    <p-progressBar
+      [value]="summary.averageScore"
+      [showValue]="true"
+      [styleClass]="'average-progress ' + getAverageScoreClass(summary.averageScore)">
+    </p-progressBar>
+  </div>
+
+  <!-- Total Score & Weight -->
+  <div class="average-score-box metrics-box">
+    <div class="metric-col">
+      <span><i class="pi pi-database"></i> Total Score</span>
+      <h2>{{ summary.totalScore | number:'1.0-1' }}</h2>
     </div>
 
-    <div class="category-breakdown">
-      <p-card *ngFor="let d of summary.details" class="summary-card">
-        <h4>{{ d.category }}</h4>
-        <p>Score: {{ d.score }}</p>
-        <p>Weight: {{ d.weight }}</p>
-        <p-progressBar [value]="(d.score*d.weight) / summary.weightedScore * 100" [showValue]="true"></p-progressBar>
-      </p-card>
+    <div class="metric-divider"></div>
+
+    <div class="metric-col">
+      <span><i class="pi pi-chart-line"></i> Total Weight</span>
+      <h2>{{ summary.totalWeight | number:'1.0-1' }}</h2>
     </div>
   </div>
+
+  <!-- Summary Comment -->
+  <div class="summary-comment-card">
+    <label for="summaryComment">
+      <i class="pi pi-comment"></i>
+      ESG Assessment Comment
+    </label>
+
+    <textarea
+      id="summaryComment"
+      pInputTextarea
+      rows="4"
+      [(ngModel)]="summary.comment"
+      class="summary-textarea" disabled="true">
+    </textarea>
+  </div>
+
+</div>
 
 </div>
 
@@ -80,6 +106,22 @@
         </p-card>
 
     </div>
+<!-- Mandatory ESG Comment -->
+<div class="assessment-comment-card">
+  <label for="assessmentComment">
+    <i class="pi pi-comment"></i>
+    ESG Assessment Comment <span class="required">*</span>
+  </label>
+
+  <textarea
+    id="assessmentComment"
+    pInputTextarea
+    rows="4"
+    [(ngModel)]="assessmentComment"
+    placeholder="Provide justification, ESG considerations, and observations for this loan assessment..."
+    class="assessment-textarea">
+  </textarea>
+</div>
 
     <div class="incomplete-hint" *ngIf="!isAssessmentComplete()">
   ⚠️ Please complete all checklist items before submitting.
@@ -92,7 +134,7 @@
             label="Submit ESG Assessment"
             icon="pi pi-check"
             class="p-button-success submit-btn"
-            [disabled]="!isAssessmentComplete()"
+            [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10"
             (click)="confirmSubmit()">
         </button>
     </footer>

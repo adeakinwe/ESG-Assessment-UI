@@ -30,11 +30,12 @@ import { ChipModule } from 'primeng/chip';
   styleUrl: './esg-assessments.component.css'
 })
 export class EsgAssessmentsComponent {
-  @ViewChild('summarySection') summarySection!: ElementRef;
+@ViewChild('summarySection', { static: false }) summarySection?: ElementRef;
 
   summary: any = null; // Holds the API summary
   loanApplicationId!: number;
   checklistItems: ChecklistItem[] = [];
+  assessmentComment: string = this.summary?.comment || '';
 
   // checklistItemId -> responseValue
   selectedResponses: { [key: number]: number } = {};
@@ -112,9 +113,16 @@ onSelect(itemId: number) {
       return;
     }
 
+    // ❗ Mandatory comment validation
+if (!this.assessmentComment || this.assessmentComment.trim().length < 10) {
+  alert('Please provide a meaningful ESG assessment comment.');
+  return;
+}
+
     // 2️⃣ Build body
     const body = {
       loanApplicationId: this.loanApplicationId,
+      comment: this.assessmentComment,
       items: this.checklistItems.map(item => {
         const responseValue = this.selectedResponses[item.checklistItemId];
 
@@ -136,7 +144,7 @@ onSelect(itemId: number) {
     this.checklistService.submitAssessment(body).subscribe({
       next: (res: any) => {
         alert(`${res.message}`);
-        // ✅ Reload summary after submission
+        // Reload summary after submission
         this.loadSummary();
       },
       error: (err) => alert(`Submission failed: ${err.error.message || err.statusText}`)
@@ -165,26 +173,39 @@ onSelect(itemId: number) {
             this.selectedResponses[item.checklistItemId] = response.responseValue;
           }
         });
+        // load saved ESG assessment summary
+        this.loadSummary();
       },
       error: (err: any) => console.error(err)
     });
   }
 
   getRatingClass(rating: string) {
-  return rating === 'High' ? 'p-chip-success' :
-         rating === 'Medium' ? 'p-chip-warning' : 'p-chip-danger';
+  return rating === 'High' ? 'p-chip-danger' :
+         rating === 'Medium' ? 'p-chip-warning' : 'p-chip-success';
 }
   loadSummary() {
     this.checklistService.getEsgAssessmentSummary(this.loanApplicationId).subscribe({
       next: (res: any) => {
-        this.summary = res;
-
-        // ✅ Auto scroll to summary
+        this.summary = res.data;
+        this.assessmentComment = this.summary?.comment || '';
+        //Auto scroll to summary
         setTimeout(() => {
-          this.summarySection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+          this.summarySection?.nativeElement.scrollIntoView({ behavior: 'smooth' });
         }, 50);
       },
       error: (err: any) => console.error(err)
     });
   }
+
+  getAverageScoreClass(score: number): string {
+  if (score >= 65) {
+    return 'avg-danger';
+  }
+  if (score >= 35) {
+    return 'avg-warning';
+  }
+  return 'avg-success';
+}
+
 }
