@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ChipModule } from 'primeng/chip';
+import { LoanApplicationService } from '../services/loan-application.service';
 @Component({
   selector: 'app-esg-assessments',
   standalone: true,
@@ -30,7 +31,7 @@ import { ChipModule } from 'primeng/chip';
   styleUrl: './esg-assessments.component.css'
 })
 export class EsgAssessmentsComponent {
-@ViewChild('summarySection', { static: false }) summarySection?: ElementRef;
+  @ViewChild('summarySection', { static: false }) summarySection?: ElementRef;
 
   summary: any = null; // Holds the API summary
   loanApplicationId!: number;
@@ -43,7 +44,8 @@ export class EsgAssessmentsComponent {
   constructor(
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private checklistService: ChecklistService
+    private checklistService: ChecklistService,
+    private loanApplicationService: LoanApplicationService
   ) { }
 
   ngOnInit(): void {
@@ -60,44 +62,44 @@ export class EsgAssessmentsComponent {
   }
 
   get answeredCount(): number {
-  return Object.keys(this.selectedResponses).length;
-}
-
-get totalCount(): number {
-  return this.checklistItems.length;
-}
-
-onSelect(itemId: number) {
-  console.log(
-    `Checklist ${itemId} selected value:`,
-    this.selectedResponses[itemId]
-  );
-}
-
-  isAssessmentComplete(): boolean {
-  if (!this.checklistItems || this.checklistItems.length === 0) {
-    return false;
+    return Object.keys(this.selectedResponses).length;
   }
 
-  return this.checklistItems.every(
-    item => this.selectedResponses[item.checklistItemId] !== undefined
-  );
-}
+  get totalCount(): number {
+    return this.checklistItems.length;
+  }
+
+  onSelect(itemId: number) {
+    console.log(
+      `Checklist ${itemId} selected value:`,
+      this.selectedResponses[itemId]
+    );
+  }
+
+  isAssessmentComplete(): boolean {
+    if (!this.checklistItems || this.checklistItems.length === 0) {
+      return false;
+    }
+
+    return this.checklistItems.every(
+      item => this.selectedResponses[item.checklistItemId] !== undefined
+    );
+  }
 
   confirmSubmit() {
-  this.confirmationService.confirm({
-    message: 'Are you sure you want to submit this ESG assessment? You can still update it later.',
-    header: 'Confirm ESG Submission',
-    icon: 'pi pi-leaf',
-    accept: () => {
-      this.submitAssessment();
-    },
-    reject: () => {
-      // Optional: toast / console log
-      console.log('Submission cancelled');
-    }
-  });
-}
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to submit this ESG assessment? You can still update it later.',
+      header: 'Confirm ESG Submission',
+      icon: 'pi pi-leaf',
+      accept: () => {
+        this.submitAssessment();
+      },
+      reject: () => {
+        // Optional: toast / console log
+        console.log('Submission cancelled');
+      }
+    });
+  }
 
 
   // ✅ SUBMIT ALL RESPONSES AT ONCE
@@ -114,10 +116,10 @@ onSelect(itemId: number) {
     }
 
     // ❗ Mandatory comment validation
-if (!this.assessmentComment || this.assessmentComment.trim().length < 10) {
-  alert('Please provide a meaningful ESG assessment comment.');
-  return;
-}
+    if (!this.assessmentComment || this.assessmentComment.trim().length < 10) {
+      alert('Please provide a meaningful ESG assessment comment.');
+      return;
+    }
 
     // 2️⃣ Build body
     const body = {
@@ -181,9 +183,9 @@ if (!this.assessmentComment || this.assessmentComment.trim().length < 10) {
   }
 
   getRatingClass(rating: string) {
-  return rating === 'High' ? 'p-chip-danger' :
-         rating === 'Medium' ? 'p-chip-warning' : 'p-chip-success';
-}
+    return rating === 'High' ? 'p-chip-danger' :
+      rating === 'Medium' ? 'p-chip-warning' : 'p-chip-success';
+  }
   loadSummary() {
     this.checklistService.getEsgAssessmentSummary(this.loanApplicationId).subscribe({
       next: (res: any) => {
@@ -199,13 +201,21 @@ if (!this.assessmentComment || this.assessmentComment.trim().length < 10) {
   }
 
   getAverageScoreClass(score: number): string {
-  if (score >= 65) {
-    return 'avg-danger';
+    if (score >= 65) {
+      return 'avg-danger';
+    }
+    if (score >= 35) {
+      return 'avg-warning';
+    }
+    return 'avg-success';
   }
-  if (score >= 35) {
-    return 'avg-warning';
-  }
-  return 'avg-success';
-}
 
+  submitLoanApplicationForAppraisal() {
+    this.loanApplicationService.submitLoanApplicationForAppraisal(this.loanApplicationId).subscribe({
+      next: (res: any) => {
+        alert(`${res.message}`);
+      },
+      error: (err) => alert(`Failed to submit for appraisal: ${err.error.message || err.statusText}`)
+    });
+  }
 }

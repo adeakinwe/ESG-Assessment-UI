@@ -127,17 +127,32 @@
   ⚠️ Please complete all checklist items before submitting.
 </div>
 
-    <!-- ✅ SUBMIT BAR -->
-    <footer class="esg-submit-bar">
-        <button
-            pButton
-            label="Submit ESG Assessment"
-            icon="pi pi-check"
-            class="p-button-success submit-btn"
-            [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10"
-            (click)="confirmSubmit()">
-        </button>
-    </footer>
+<!-- ✅ SUBMIT BAR -->
+<footer class="esg-submit-bar">
+
+  <div class="submit-actions">
+    <!-- Submit for Appraisal -->
+    <button
+      pButton
+      label="Submit for Appraisal"
+      icon="pi pi-send"
+      class="p-button-outlined appraisal-btn"
+      [disabled]="!isAssessmentComplete()"
+      (click)="submitLoanApplicationForAppraisal()">
+    </button>
+
+    <!-- Submit ESG Assessment -->
+    <button
+      pButton
+      label="Submit ESG Assessment"
+      icon="pi pi-check"
+      class="p-button-success submit-btn"
+      [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10"
+      (click)="confirmSubmit()">
+    </button>
+  </div>
+
+</footer>
 
 </div>
 <p-confirmDialog

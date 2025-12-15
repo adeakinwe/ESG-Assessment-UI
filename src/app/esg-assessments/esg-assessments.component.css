@@ -118,7 +118,8 @@
     background: linear-gradient(to right, #0e7c3a, #1fa55b);
     padding: 1rem 2rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* 👈 changed */
+    align-items: center;
     box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
     z-index: 20;
 }
@@ -470,4 +471,22 @@
 
 .required {
   color: #c62828;
+}
+
+.submit-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.appraisal-btn {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #e8f8ec !important;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 0.75rem 1.8rem;
+}
+
+.appraisal-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
 }
