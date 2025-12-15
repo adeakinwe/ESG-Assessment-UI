@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChecklistService } from '../services/checklist.service';
 import { ChecklistItem } from '../models/checklist.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
@@ -37,12 +37,15 @@ export class EsgAssessmentsComponent {
   loanApplicationId!: number;
   checklistItems: ChecklistItem[] = [];
   assessmentComment: string = this.summary?.comment || '';
-
+  submittedForAppraisal: boolean = false;
+  isReadOnly: boolean = false;
+  
   // checklistItemId -> responseValue
   selectedResponses: { [key: number]: number } = {};
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private confirmationService: ConfirmationService,
     private checklistService: ChecklistService,
     private loanApplicationService: LoanApplicationService
@@ -50,6 +53,8 @@ export class EsgAssessmentsComponent {
 
   ngOnInit(): void {
     this.loanApplicationId = Number(this.route.snapshot.paramMap.get('id'));
+    this.submittedForAppraisal = this.route.snapshot.paramMap.get('submitted') === 'true';
+    this.isReadOnly = this.submittedForAppraisal;
 
     this.checklistService.getChecklist().subscribe({
       next: (data) => {
@@ -214,6 +219,7 @@ export class EsgAssessmentsComponent {
     this.loanApplicationService.submitLoanApplicationForAppraisal(this.loanApplicationId).subscribe({
       next: (res: any) => {
         alert(`${res.message}`);
+        this.router.navigate(['/loan-applications']);
       },
       error: (err) => alert(`Failed to submit for appraisal: ${err.error.message || err.statusText}`)
     });

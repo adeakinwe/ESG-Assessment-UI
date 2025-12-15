@@ -10,6 +10,6 @@ export const routes: Route[] = [
 //{ path: 'profile-customer', component: ProfileCustomerComponent },
 { path: 'loan-application', component: LoanApplicationComponent },
 { path: 'loan-applications', component: LoanApplicationListComponent },
-{ path: 'esg-assessment/:id', component: EsgAssessmentsComponent },
+{ path: 'esg-assessment/:id/:submitted', component: EsgAssessmentsComponent },
 // { path: 'esg-checklist', component: EsgAssessmentsComponent },
 ];

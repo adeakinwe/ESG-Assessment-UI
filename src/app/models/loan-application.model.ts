@@ -18,4 +18,5 @@ tenorDays: number;
 product: string;
 interestRate: number;
 loanPurpose: string;
+submittedForAppraisal?: boolean;
 }

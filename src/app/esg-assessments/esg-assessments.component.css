@@ -490,3 +490,25 @@
 .appraisal-btn:hover {
     background: rgba(255, 255, 255, 0.15) !important;
 }
+
+.read-only {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.read-only .esg-card {
+  background: #f3fdf6;
+}
+
+.locked-banner {
+  margin: 1rem 2rem;
+  padding: 1rem 1.25rem;
+  background: #e8f5e9;
+  border-left: 6px solid #2e7d32;
+  color: #1b5e20;
+  font-weight: 600;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}

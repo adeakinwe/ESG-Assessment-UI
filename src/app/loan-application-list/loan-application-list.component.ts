@@ -58,7 +58,7 @@ export class LoanApplicationListComponent implements OnInit {
   }
 
   openAssessment(row: LoanApplication) {
-    this.router.navigate(['/esg-assessment', row.loanApplicationId]);
+    this.router.navigate(['/esg-assessment', row.loanApplicationId, row.submittedForAppraisal]);
   }
 
   getStatusClass(statusId: number): string {

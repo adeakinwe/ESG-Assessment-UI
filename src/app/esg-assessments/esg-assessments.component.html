@@ -23,6 +23,11 @@
     <p-chip [label]="summary.rating" [styleClass]="getRatingClass(summary.rating)"></p-chip>
   </div>
 
+<div *ngIf="isReadOnly" class="locked-banner">
+<i class="pi pi-lock"></i>
+This ESG assessment has been submitted for appraisal and is now preview-only.
+</div>
+
 <div class="summary-overview">
 
   <!-- Average Score -->
@@ -73,7 +78,7 @@
 
 </div>
 
-    <div class="esg-container">
+    <div class="esg-container" [class.read-only]="isReadOnly">
 
         <p-card *ngFor="let item of checklistItems" class="esg-card">
 
@@ -99,7 +104,8 @@
                     optionValue="responseValue"
                     [(ngModel)]="selectedResponses[item.checklistItemId]"
                     class="response-button"
-                    (onChange)="onSelect(item.checklistItemId)">
+                    (onChange)="onSelect(item.checklistItemId)"
+                    [disabled]="isReadOnly">
                 </p-selectButton>
             </div>
 
@@ -119,7 +125,8 @@
     rows="4"
     [(ngModel)]="assessmentComment"
     placeholder="Provide justification, ESG considerations, and observations for this loan assessment..."
-    class="assessment-textarea">
+    class="assessment-textarea"
+    [disabled]="isReadOnly">
   </textarea>
 </div>
 
@@ -138,7 +145,7 @@
       icon="pi pi-send"
       class="p-button-outlined appraisal-btn"
       [disabled]="!isAssessmentComplete()"
-      (click)="submitLoanApplicationForAppraisal()">
+      (click)="submitLoanApplicationForAppraisal()" *ngIf="!submittedForAppraisal">
     </button>
 
     <!-- Submit ESG Assessment -->
@@ -147,7 +154,7 @@
       label="Submit ESG Assessment"
       icon="pi pi-check"
       class="p-button-success submit-btn"
-      [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10"
+      [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10 || isReadOnly"
       (click)="confirmSubmit()">
     </button>
   </div>
