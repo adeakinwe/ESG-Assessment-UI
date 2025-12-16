@@ -512,3 +512,53 @@
   align-items: center;
   gap: 0.6rem;
 }
+
+/* ===============================
+   LOCKED CARD WATERMARK
+================================*/
+.locked-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lock icon watermark */
+.locked-card::after {
+  content: '\e90d'; /* PrimeIcons lock */
+  font-family: 'primeicons';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-18deg);
+
+  font-size: 5rem;
+  color: rgba(14, 124, 58, 0.12); /* ESG green, subtle */
+
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+/* Slight dim effect */
+.locked-card {
+  opacity: 0.92;
+}
+
+.locked-card * {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .locked-card::after {
+    font-size: 3.5rem;
+  }
+}
+
+.locked-card::before {
+  content: 'READ ONLY';
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(14,124,58,0.4);
+}

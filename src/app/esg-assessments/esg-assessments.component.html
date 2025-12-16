@@ -80,7 +80,7 @@ This ESG assessment has been submitted for appraisal and is now preview-only.
 
     <div class="esg-container" [class.read-only]="isReadOnly">
 
-        <p-card *ngFor="let item of checklistItems" class="esg-card">
+        <p-card *ngFor="let item of checklistItems" class="esg-card" [ngClass]="{ 'locked-card': isReadOnly }">
 
             <div class="esg-card-header">
                 <h3>{{ item.item }}</h3>
