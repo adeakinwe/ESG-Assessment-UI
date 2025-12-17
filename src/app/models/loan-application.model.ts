@@ -20,3 +20,14 @@ interestRate: number;
 loanPurpose: string;
 submittedForAppraisal?: boolean;
 }
+
+export interface LoanApplicationResDTO {
+  loanApplicationId: number;
+  sectorId: number;
+  productId: number;
+  amount: number;
+  country?: string;
+  sectorName?: string;
+  productName?: string;
+  customerName?: string;
+}

@@ -61,6 +61,10 @@ export class LoanApplicationListComponent implements OnInit {
     this.router.navigate(['/esg-assessment', row.loanApplicationId, row.submittedForAppraisal]);
   }
 
+  openPreScreen(row: LoanApplication) {
+  this.router.navigate(['/esg-pre-screen', row.loanApplicationId]);
+}
+
   getStatusClass(statusId: number): string {
     switch (statusId) {
       case 0:

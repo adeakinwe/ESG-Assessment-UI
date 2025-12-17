@@ -1,0 +1,83 @@
+<div class="pre-screen-container" *ngIf="selectedLoan && aiRecommendation">
+
+  <!-- Header -->
+  <div class="pre-screen-header">
+    <div>
+      <h2>🌿 ESG Pre-Screen Assessment</h2>
+      <p>AI-powered ESG advisory before full assessment</p>
+    </div>
+
+    <button
+      pButton
+      label="Proceed to ESG Assessment"
+      icon="pi pi-arrow-right"
+      class="p-button-success proceed-btn"
+      (click)="proceedToAssessment()">
+    </button>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="pre-screen-grid">
+
+    <!-- Loan Details Card -->
+    <div class="card loan-card">
+      <h3><i class="pi pi-briefcase"></i> Loan Application Details</h3>
+
+      <div class="detail-row">
+        <span>Loan ID</span>
+        <strong>#{{ selectedLoan.loanApplicationId }}</strong>
+      </div>
+
+      <div class="detail-row">
+        <span>Sector</span>
+        <strong>{{ selectedLoan.sectorName }}</strong>
+      </div>
+
+      <div class="detail-row">
+        <span>Product</span>
+        <strong>{{ selectedLoan.productName }}</strong>
+      </div>
+
+      <div class="detail-row">
+        <span>Amount</span>
+        <strong>{{ selectedLoan.amount | currency }}</strong>
+      </div>
+
+      <div class="detail-row">
+        <span>Country</span>
+        <strong>{{ selectedLoan.country }}</strong>
+      </div>
+    </div>
+
+    <!-- AI Recommendation Card -->
+    <div class="card ai-card">
+      <div class="ai-header">
+        <h3><i class="pi pi-microchip"></i> AI ESG Advisory</h3>
+        <p-chip
+          [label]="riskLabel"
+          [styleClass]="riskClass">
+        </p-chip>
+      </div>
+
+      <div class="ai-body">
+        <p class="recommendation-text">
+          {{ aiRecommendation.recommendation }}
+        </p>
+
+        <div class="confidence-box">
+          <span>AI Confidence</span>
+          <p-progressBar
+            [value]="aiRecommendation.confidence * 100"
+            [showValue]="true">
+          </p-progressBar>
+        </div>
+      </div>
+
+      <div class="ai-footer">
+        <i class="pi pi-info-circle"></i>
+        AI recommendations are advisory and do not replace human judgment.
+      </div>
+    </div>
+
+  </div>
+</div>
