@@ -6,7 +6,7 @@ import { Customer, LoanApplication, LoanApplicationResDTO } from '../models/loan
 
 @Injectable({ providedIn: 'root' })
 export class LoanApplicationService {
-  private apiUrl = 'http://localhost:5010/api/loan-application'; // adjust backend URL
+  private apiUrl = 'http://localhost:5010/api'; // adjust backend URL
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class LoanApplicationService {
   }
 
   submitLoanApplication(payload: LoanApplication): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, payload).pipe(
+    return this.http.post(`${this.apiUrl}/loan-application/add`, payload).pipe(
       map((response: any) => {
         return response;
       }),
@@ -28,15 +28,15 @@ export class LoanApplicationService {
   }
 
     getLoanApplications(): Observable<LoanApplication[]> {
-      return this.http.get<LoanApplication[]>(`${this.apiUrl}/all`);
+      return this.http.get<LoanApplication[]>(`${this.apiUrl}/loan-application/all`);
     }
 
     getLoanApplicationsById(loanApplicationId: number): Observable<LoanApplicationResDTO> {
-      return this.http.get<LoanApplicationResDTO>(`${this.apiUrl}/${loanApplicationId}`);
+      return this.http.get<LoanApplicationResDTO>(`${this.apiUrl}/loan-application/${loanApplicationId}`);
     }
 
     submitLoanApplicationForAppraisal(loanApplicationId: number): Observable<any> {
-      return this.http.get(`${this.apiUrl}/submit-for-appraisal/${loanApplicationId}`).pipe(
+      return this.http.get(`${this.apiUrl}/loan-application/submit-for-appraisal/${loanApplicationId}`).pipe(
         map((response: any) => {
           return response;
         }),

@@ -13,4 +13,11 @@ export interface EsgAiRecommendationDTO {
   recommendation: string; // textual AI advice
   confidence: number; // 0.0 - 1.0
   payload?: string; // optional serialized request or other metadata
+  explainability?: ExplainabilityItem[];
+}
+
+export interface ExplainabilityItem {
+  factor: string;
+  impact: 'Positive' | 'Neutral' | 'Negative';
+  detail: string;
 }

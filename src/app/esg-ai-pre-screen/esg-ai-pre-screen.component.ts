@@ -90,7 +90,16 @@ export class EsgAiPreScreenComponent implements OnInit {
     }
   }
 
+  mapImpactClass(impact: string): string {
+  switch (impact.toLowerCase()) {
+    case 'positive': return 'positive';
+    case 'neutral': return 'neutral';
+    case 'negative': return 'negative';
+    default: return '';
+  }
+}
+
   proceedToAssessment() {
-    this.router.navigate(['/esg-assessment', this.selectedLoan.loanApplicationId]);
+    this.router.navigate(['/esg-assessment', this.selectedLoan.loanApplicationId, this.selectedLoan.submittedForAppraisal]);
   }
 }

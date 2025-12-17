@@ -30,4 +30,5 @@ export interface LoanApplicationResDTO {
   sectorName?: string;
   productName?: string;
   customerName?: string;
+  submittedForAppraisal?: boolean;
 }

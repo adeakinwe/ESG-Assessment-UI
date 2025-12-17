@@ -79,5 +79,27 @@
       </div>
     </div>
 
+    <!-- Explainability Card -->
+<div class="card explainability-card" *ngIf="aiRecommendation.explainability?.length">
+  <div class="explainability-header">
+    <h3><i class="pi pi-lightbulb"></i> AI Explainability</h3>
+    <p>Highlights of factors influencing this advisory</p>
+  </div>
+
+  <div class="explainability-body">
+    <div class="explain-item" *ngFor="let item of aiRecommendation.explainability">
+      <div class="factor">{{ item.factor }}</div>
+      <div class="impact" [ngClass]="mapImpactClass(item.impact)">
+        {{ item.impact }} impact
+      </div>
+      <div class="detail">{{ item.detail }}</div>
+    </div>
+  </div>
+
+  <div class="explainability-footer">
+    <i class="pi pi-info-circle"></i>
+    Explainability helps you understand why the AI gave this recommendation.
+  </div>
+</div>
   </div>
 </div>

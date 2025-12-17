@@ -224,4 +224,8 @@ export class EsgAssessmentsComponent {
       error: (err) => alert(`Failed to submit for appraisal: ${err.error.message || err.statusText}`)
     });
   }
+
+  backToPreScreen() {
+    this.router.navigate(['/esg-pre-screen', this.loanApplicationId]);
+  }
 }

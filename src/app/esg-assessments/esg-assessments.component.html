@@ -157,6 +157,15 @@ This ESG assessment has been submitted for appraisal and is now preview-only.
       [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10 || isReadOnly"
       (click)="confirmSubmit()">
     </button>
+
+    <button
+      pButton
+      label="Back to ESG Pre-Screening"
+      icon="pi pi-arrow-left"
+      class="p-button-success goback-btn"
+      (click)="backToPreScreen()">
+    </button>
+
   </div>
 
 </footer>

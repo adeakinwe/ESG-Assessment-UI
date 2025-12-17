@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* ESG Risk Chips */
+.p-chip.risk-high {
+  background: #fdecea !important;
+  color: #922b21 !important;
+  border: 1px solid #f5c6cb;
+}
+
+.p-chip.risk-medium {
+  background: #fff4e5 !important;
+  color: #9c640c !important;
+  border: 1px solid #ffe0b2;
+}
+
+.p-chip.risk-low {
+  background: #d4efdf !important;
+  color: #1e8449 !important;
+  border: 1px solid #a9dfbf;
+}
+
+.p-chip {
+  font-weight: 600;
+  border-radius: 20px;
+}
