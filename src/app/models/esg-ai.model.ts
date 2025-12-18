@@ -21,3 +21,17 @@ export interface ExplainabilityItem {
   impact: 'Positive' | 'Neutral' | 'Negative';
   detail: string;
 }
+
+export interface EsgExplainabilityDTO {
+  loanApplicationId: number;
+  itemDetails: {
+    checklistItemId: number;
+    question: string;
+    score: number;
+    weight: number;
+    contribution: number;
+    impact: 'Positive' | 'Neutral' | 'Negative';
+  }[];
+  flags: string[];
+  mitigationHints: string[];
+}

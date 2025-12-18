@@ -1,181 +1,206 @@
 <div class="esg-page">
 
-    <!--  Top Header  -->
-    <header class="esg-header">
-        <h2>🌿 ESG Assessment Checklist</h2>
-    </header>
-<div class="progress-wrapper">
-  <div class="progress-text">
-    {{ answeredCount }} / {{ totalCount }} answered
-  </div>
+  <!--  Top Header  -->
+  <header class="esg-header">
+    <h2>🌿 ESG Assessment Checklist</h2>
+  </header>
+  <div class="progress-wrapper">
+    <div class="progress-text">
+      {{ answeredCount }} / {{ totalCount }} answered
+    </div>
 
-  <p-progressBar
-    [value]="(answeredCount / totalCount) * 100"
-    [showValue]="false"
-    styleClass="green-progress">
-  </p-progressBar>
-</div>
-<!-- ESG Summary - Visible only after submission -->
-<div #summarySection class="esg-summary" *ngIf="summary">
-
-  <div class="summary-header-bar">
-    <h3>✅ ESG Assessment Summary</h3>
-    <p-chip [label]="summary.rating" [styleClass]="getRatingClass(summary.rating)"></p-chip>
-  </div>
-
-<div *ngIf="isReadOnly" class="locked-banner">
-<i class="pi pi-lock"></i>
-This ESG assessment has been submitted for appraisal and is now preview-only.
-</div>
-
-<div class="summary-overview">
-
-  <!-- Average Score -->
-  <div class="average-score-box">
-    <span>Average Score</span>
-    <h2>{{ summary.averageScore | number:'1.0-1' }}</h2>
-    <p>{{ summary.rating }} Risk</p>
-
-    <p-progressBar
-      [value]="summary.averageScore"
-      [showValue]="true"
-      [styleClass]="'average-progress ' + getAverageScoreClass(summary.averageScore)">
+    <p-progressBar [value]="(answeredCount / totalCount) * 100" [showValue]="false" styleClass="green-progress">
     </p-progressBar>
   </div>
+  <!-- ESG Summary - Visible only after submission -->
+  <div #summarySection class="esg-summary" *ngIf="summary">
 
-  <!-- Total Score & Weight -->
-  <div class="average-score-box metrics-box">
-    <div class="metric-col">
-      <span><i class="pi pi-database"></i> Total Score</span>
-      <h2>{{ summary.totalScore | number:'1.0-1' }}</h2>
+    <div class="summary-header-bar">
+      <h3>✅ ESG Assessment Summary</h3>
+      <p-chip [label]="summary.rating" [styleClass]="getRatingClass(summary.rating)"></p-chip>
     </div>
 
-    <div class="metric-divider"></div>
-
-    <div class="metric-col">
-      <span><i class="pi pi-chart-line"></i> Total Weight</span>
-      <h2>{{ summary.totalWeight | number:'1.0-1' }}</h2>
+    <div *ngIf="isReadOnly" class="locked-banner">
+      <i class="pi pi-lock"></i>
+      This ESG assessment has been submitted for appraisal and is now preview-only.
     </div>
+
+    <div class="summary-overview">
+
+      <!-- Average Score -->
+      <div class="average-score-box">
+        <span>Average Score</span>
+        <h2>{{ summary.averageScore | number:'1.0-1' }}</h2>
+        <p>{{ summary.rating }} Risk</p>
+
+        <p-progressBar [value]="summary.averageScore" [showValue]="true"
+          [styleClass]="'average-progress ' + getAverageScoreClass(summary.averageScore)">
+        </p-progressBar>
+      </div>
+
+      <!-- Total Score & Weight -->
+      <div class="average-score-box metrics-box">
+        <div class="metric-col">
+          <span><i class="pi pi-database"></i> Total Score</span>
+          <h2>{{ summary.totalScore | number:'1.0-1' }}</h2>
+        </div>
+
+        <div class="metric-divider"></div>
+
+        <div class="metric-col">
+          <span><i class="pi pi-chart-line"></i> Total Weight</span>
+          <h2>{{ summary.totalWeight | number:'1.0-1' }}</h2>
+        </div>
+      </div>
+
+      <!-- Summary Comment -->
+      <div class="summary-comment-card">
+        <label for="summaryComment">
+          <i class="pi pi-comment"></i>
+          ESG Assessment Comment
+        </label>
+
+        <textarea id="summaryComment" pInputTextarea rows="4" [(ngModel)]="summary.comment" class="summary-textarea"
+          disabled="true">
+    </textarea>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ===============================
+     ESG EXPLAINABILITY SECTION
+================================ -->
+  <div class="esg-explainability" *ngIf="explainability">
+
+    <div class="explainability-header">
+      <h3>🌱 ESG Explainability</h3>
+      <p>How individual responses influenced the ESG risk outcome</p>
+    </div>
+
+    <!-- FLAGS -->
+    <div class="explainability-flags" *ngIf="explainability.flags.length">
+      <h4><i class="pi pi-exclamation-triangle"></i> Risk Flags</h4>
+      <ul>
+        <li *ngFor="let flag of explainability.flags">
+          {{ flag }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- ITEM LEVEL EXPLANATION -->
+    <div class="explainability-grid">
+      <div class="explainability-card" *ngFor="let item of explainability.itemDetails"
+        [ngClass]="item.impact.toLowerCase()">
+
+        <div class="explainability-card-header">
+          <span class="impact-chip" [class]="item.impact.toLowerCase()">
+            {{ item.impact }}
+          </span>
+        </div>
+
+        <h4>{{ item.question }}</h4>
+
+        <div class="explainability-metrics">
+          <div>
+            <span>Score</span>
+            <strong>{{ item.score }}</strong>
+          </div>
+          <div>
+            <span>Weight</span>
+            <strong>{{ item.weight }}</strong>
+          </div>
+          <div>
+            <span>Contribution</span>
+            <strong>{{ item.contribution | number:'1.0-0' }}%</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MITIGATION -->
+    <div class="mitigation-box" *ngIf="explainability.mitigationHints.length">
+      <h4><i class="pi pi-shield"></i> Mitigation Guidance</h4>
+      <ul>
+        <li *ngFor="let hint of explainability.mitigationHints">
+          {{ hint }}
+        </li>
+      </ul>
+    </div>
+
   </div>
 
-  <!-- Summary Comment -->
-  <div class="summary-comment-card">
-    <label for="summaryComment">
+  <div class="esg-container" [class.read-only]="isReadOnly">
+
+    <p-card *ngFor="let item of checklistItems" class="esg-card" [ngClass]="{ 'locked-card': isReadOnly }">
+
+      <div class="esg-card-header">
+        <h3>{{ item.item }}</h3>
+        <span class="badge">{{ item.category }}</span>
+      </div>
+
+      <div class="esg-meta">
+        <span class="meta-label">Indicator:</span>
+        <span class="meta-value">{{ item.indicatorType }}</span>
+
+        <span class="meta-label">Weight:</span>
+        <span class="meta-value weight">{{ item.weight }}</span>
+      </div>
+
+      <div class="response-section">
+        <label class="response-label">Select Response:</label>
+
+        <p-selectButton [options]="item.responses" optionLabel="label" optionValue="responseValue"
+          [(ngModel)]="selectedResponses[item.checklistItemId]" class="response-button"
+          (onChange)="onSelect(item.checklistItemId)" [disabled]="isReadOnly">
+        </p-selectButton>
+      </div>
+
+    </p-card>
+
+  </div>
+  <!-- Mandatory ESG Comment -->
+  <div class="assessment-comment-card">
+    <label for="assessmentComment">
       <i class="pi pi-comment"></i>
-      ESG Assessment Comment
+      ESG Assessment Comment <span class="required">*</span>
     </label>
 
-    <textarea
-      id="summaryComment"
-      pInputTextarea
-      rows="4"
-      [(ngModel)]="summary.comment"
-      class="summary-textarea" disabled="true">
-    </textarea>
+    <textarea id="assessmentComment" pInputTextarea rows="4" [(ngModel)]="assessmentComment"
+      placeholder="Provide justification, ESG considerations, and observations for this loan assessment..."
+      class="assessment-textarea" [disabled]="isReadOnly">
+  </textarea>
   </div>
 
-</div>
+  <div class="incomplete-hint" *ngIf="!isAssessmentComplete()">
+    ⚠️ Please complete all checklist items before submitting.
+  </div>
 
-</div>
+  <!-- ✅ SUBMIT BAR -->
+  <footer class="esg-submit-bar">
 
-    <div class="esg-container" [class.read-only]="isReadOnly">
+    <div class="submit-actions">
+      <!-- Submit for Appraisal -->
+      <button pButton label="Submit for Appraisal" icon="pi pi-send" class="p-button-outlined appraisal-btn"
+        [disabled]="!isAssessmentComplete()" (click)="submitLoanApplicationForAppraisal()"
+        *ngIf="!submittedForAppraisal">
+      </button>
 
-        <p-card *ngFor="let item of checklistItems" class="esg-card" [ngClass]="{ 'locked-card': isReadOnly }">
+      <!-- Submit ESG Assessment -->
+      <button pButton label="Submit ESG Assessment" icon="pi pi-check" class="p-button-success submit-btn"
+        [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10 || isReadOnly"
+        (click)="confirmSubmit()">
+      </button>
 
-            <div class="esg-card-header">
-                <h3>{{ item.item }}</h3>
-                <span class="badge">{{ item.category }}</span>
-            </div>
-
-            <div class="esg-meta">
-                <span class="meta-label">Indicator:</span>
-                <span class="meta-value">{{ item.indicatorType }}</span>
-
-                <span class="meta-label">Weight:</span>
-                <span class="meta-value weight">{{ item.weight }}</span>
-            </div>
-
-            <div class="response-section">
-                <label class="response-label">Select Response:</label>
-
-                <p-selectButton 
-                    [options]="item.responses"
-                    optionLabel="label"
-                    optionValue="responseValue"
-                    [(ngModel)]="selectedResponses[item.checklistItemId]"
-                    class="response-button"
-                    (onChange)="onSelect(item.checklistItemId)"
-                    [disabled]="isReadOnly">
-                </p-selectButton>
-            </div>
-
-        </p-card>
+      <button pButton label="Back to ESG Pre-Screening" icon="pi pi-arrow-left" class="p-button-success goback-btn"
+        (click)="backToPreScreen()">
+      </button>
 
     </div>
-<!-- Mandatory ESG Comment -->
-<div class="assessment-comment-card">
-  <label for="assessmentComment">
-    <i class="pi pi-comment"></i>
-    ESG Assessment Comment <span class="required">*</span>
-  </label>
 
-  <textarea
-    id="assessmentComment"
-    pInputTextarea
-    rows="4"
-    [(ngModel)]="assessmentComment"
-    placeholder="Provide justification, ESG considerations, and observations for this loan assessment..."
-    class="assessment-textarea"
-    [disabled]="isReadOnly">
-  </textarea>
-</div>
-
-    <div class="incomplete-hint" *ngIf="!isAssessmentComplete()">
-  ⚠️ Please complete all checklist items before submitting.
-</div>
-
-<!-- ✅ SUBMIT BAR -->
-<footer class="esg-submit-bar">
-
-  <div class="submit-actions">
-    <!-- Submit for Appraisal -->
-    <button
-      pButton
-      label="Submit for Appraisal"
-      icon="pi pi-send"
-      class="p-button-outlined appraisal-btn"
-      [disabled]="!isAssessmentComplete()"
-      (click)="submitLoanApplicationForAppraisal()" *ngIf="!submittedForAppraisal">
-    </button>
-
-    <!-- Submit ESG Assessment -->
-    <button
-      pButton
-      label="Submit ESG Assessment"
-      icon="pi pi-check"
-      class="p-button-success submit-btn"
-      [disabled]="!isAssessmentComplete() || assessmentComment.trim().length < 10 || isReadOnly"
-      (click)="confirmSubmit()">
-    </button>
-
-    <button
-      pButton
-      label="Back to ESG Pre-Screening"
-      icon="pi pi-arrow-left"
-      class="p-button-success goback-btn"
-      (click)="backToPreScreen()">
-    </button>
-
-  </div>
-
-</footer>
+  </footer>
 
 </div>
-<p-confirmDialog
-  header="Confirm ESG Submission"
-  icon="pi pi-exclamation-triangle"
-  acceptLabel="Yes, Submit"
-  rejectLabel="Review Again"
-  styleClass="esg-confirm-dialog">
+<p-confirmDialog header="Confirm ESG Submission" icon="pi pi-exclamation-triangle" acceptLabel="Yes, Submit"
+  rejectLabel="Review Again" styleClass="esg-confirm-dialog">
 </p-confirmDialog>
-

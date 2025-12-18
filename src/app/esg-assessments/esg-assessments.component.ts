@@ -13,6 +13,7 @@ import { ConfirmationService } from 'primeng/api';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ChipModule } from 'primeng/chip';
 import { LoanApplicationService } from '../services/loan-application.service';
+import { EsgAiRecommendationService } from '../services/esg-ai.service';
 @Component({
   selector: 'app-esg-assessments',
   standalone: true,
@@ -39,7 +40,8 @@ export class EsgAssessmentsComponent {
   assessmentComment: string = this.summary?.comment || '';
   submittedForAppraisal: boolean = false;
   isReadOnly: boolean = false;
-  
+  explainability: any = null;
+
   // checklistItemId -> responseValue
   selectedResponses: { [key: number]: number } = {};
 
@@ -48,7 +50,8 @@ export class EsgAssessmentsComponent {
     private router: Router,
     private confirmationService: ConfirmationService,
     private checklistService: ChecklistService,
-    private loanApplicationService: LoanApplicationService
+    private loanApplicationService: LoanApplicationService,
+    private aiService: EsgAiRecommendationService
   ) { }
 
   ngOnInit(): void {
@@ -196,6 +199,8 @@ export class EsgAssessmentsComponent {
       next: (res: any) => {
         this.summary = res.data;
         this.assessmentComment = this.summary?.comment || '';
+
+        this.loadExplainability();
         //Auto scroll to summary
         setTimeout(() => {
           this.summarySection?.nativeElement.scrollIntoView({ behavior: 'smooth' });
@@ -228,4 +233,13 @@ export class EsgAssessmentsComponent {
   backToPreScreen() {
     this.router.navigate(['/esg-pre-screen', this.loanApplicationId]);
   }
+
+  loadExplainability() {
+  this.aiService.getExplainability(this.loanApplicationId).subscribe({
+      next: (res: any) => {
+        this.explainability = res;
+      },
+      error: (err) => console.error('Explainability load failed', err)
+    });
+}
 }

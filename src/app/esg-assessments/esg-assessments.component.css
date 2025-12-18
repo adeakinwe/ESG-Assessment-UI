@@ -575,3 +575,118 @@
 .goback-btn:hover {
     background: #e8f8ec !important;
 }
+
+/* ===============================
+   ESG EXPLAINABILITY
+================================ */
+.esg-explainability {
+  margin: 2rem;
+  padding: 2rem;
+  background: #f6fdf7;
+  border-radius: 18px;
+  border: 1px solid #d7f4dd;
+  box-shadow: 0 8px 22px rgba(0,128,0,0.12);
+}
+
+.explainability-header h3 {
+  margin: 0;
+  color: #0e7c3a;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.explainability-header p {
+  color: #4d7c5f;
+  margin-top: 0.3rem;
+}
+
+/* Flags */
+.explainability-flags {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fff4f4;
+  border-left: 6px solid #e74c3c;
+  border-radius: 12px;
+}
+
+.explainability-flags h4 {
+  margin: 0 0 0.5rem 0;
+  color: #c0392b;
+}
+
+.explainability-flags ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+/* Grid */
+.explainability-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Cards */
+.explainability-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 6px 18px rgba(0,128,0,0.08);
+  border-top: 6px solid transparent;
+}
+
+.explainability-card.positive { border-top-color: #2ecc71; }
+.explainability-card.neutral  { border-top-color: #f1c40f; }
+.explainability-card.negative { border-top-color: #e74c3c; }
+
+.explainability-card h4 {
+  margin: 0.75rem 0;
+  font-size: 1rem;
+  color: #0c5f2e;
+}
+
+/* Metrics */
+.explainability-metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.explainability-metrics span {
+  font-size: 0.75rem;
+  color: #6b8f7a;
+}
+
+.explainability-metrics strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #0e7c3a;
+}
+
+/* Impact Chip */
+.impact-chip {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.impact-chip.positive { background: #2ecc71; }
+.impact-chip.neutral  { background: #f1c40f; }
+.impact-chip.negative { background: #e74c3c; }
+
+/* Mitigation */
+.mitigation-box {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background: #e8f5e9;
+  border-left: 6px solid #2e7d32;
+  border-radius: 14px;
+}
+
+.mitigation-box h4 {
+  margin: 0 0 0.5rem 0;
+  color: #1b5e20;
+}
