@@ -41,6 +41,9 @@ export class EsgAssessmentsComponent {
   submittedForAppraisal: boolean = false;
   isReadOnly: boolean = false;
   explainability: any = null;
+  finalRecommendation: any = null;
+  finalRiskLabel = '';
+  finalRiskClass = '';
 
   // checklistItemId -> responseValue
   selectedResponses: { [key: number]: number } = {};
@@ -201,6 +204,7 @@ export class EsgAssessmentsComponent {
         this.assessmentComment = this.summary?.comment || '';
 
         this.loadExplainability();
+        this.loadFinalRecommendation();
         //Auto scroll to summary
         setTimeout(() => {
           this.summarySection?.nativeElement.scrollIntoView({ behavior: 'smooth' });
@@ -235,11 +239,37 @@ export class EsgAssessmentsComponent {
   }
 
   loadExplainability() {
-  this.aiService.getExplainability(this.loanApplicationId).subscribe({
+    this.aiService.getExplainability(this.loanApplicationId).subscribe({
       next: (res: any) => {
         this.explainability = res;
       },
       error: (err) => console.error('Explainability load failed', err)
     });
-}
+  }
+
+  loadFinalRecommendation() {
+    this.aiService.getFinalRecommendation(this.loanApplicationId).subscribe({
+      next: (res: any) => {
+        this.finalRecommendation = res;
+        this.mapFinalRisk(res.riskLevel);
+      },
+      error: (err: any) => console.error('Final recommendation load failed', err)
+    });
+  }
+
+  mapFinalRisk(riskLevel: number) {
+    switch (riskLevel) {
+      case 3:
+        this.finalRiskLabel = 'High ESG Risk';
+        this.finalRiskClass = 'p-chip-danger';
+        break;
+      case 2:
+        this.finalRiskLabel = 'Medium ESG Risk';
+        this.finalRiskClass = 'p-chip-warning';
+        break;
+      default:
+        this.finalRiskLabel = 'Low ESG Risk';
+        this.finalRiskClass = 'p-chip-success';
+    }
+  }
 }

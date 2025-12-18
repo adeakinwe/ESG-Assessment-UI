@@ -129,6 +129,28 @@
     </div>
 
   </div>
+  <!-- ===============================
+   FINAL AI RECOMMENDATION
+================================ -->
+  <div class="final-ai-recommendation" *ngIf="finalRecommendation">
+
+    <div class="final-ai-header">
+      <h3>🤖 Final AI ESG Recommendation</h3>
+      <p-chip [label]="finalRiskLabel" [styleClass]="finalRiskClass">
+      </p-chip>
+    </div>
+
+    <p class="final-ai-text">
+      {{ finalRecommendation.recommendation }}
+    </p>
+
+    <div class="final-ai-confidence">
+      <span>Decision Confidence</span>
+      <p-progressBar [value]="finalRecommendation.confidence * 100" [showValue]="true">
+      </p-progressBar>
+    </div>
+
+  </div>
 
   <div class="esg-container" [class.read-only]="isReadOnly">
 

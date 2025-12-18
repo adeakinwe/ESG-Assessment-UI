@@ -7,29 +7,41 @@ import { PreScreenRequest, EsgAiRecommendationDTO } from '../models/esg-ai.model
 export class EsgAiRecommendationService {
   private apiUrl = 'http://localhost:5010/api'; // adjust backend URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   preScreen(request: PreScreenRequest): Observable<any> {
     return this.http.post<EsgAiRecommendationDTO>(`${this.apiUrl}/esg-ai-recommendation/pre-screen`, request).pipe(
-          map((response: any) => {
-            return response;
-          }),
-          catchError(error => {
-            console.error('Error obtaining pre-screening info:', error);
-            return of({ success: false, message: 'Failed to obtain pre-screening info' });
-          })
-        );
+      map((response: any) => {
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error obtaining pre-screening info:', error);
+        return of({ success: false, message: 'Failed to obtain pre-screening info' });
+      })
+    );
   }
 
   getExplainability(loanApplicationId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/esg/explainability/${loanApplicationId}`).pipe(
-          map((response: any) => {
-            return response;
-          }),
-          catchError(error => {
-            console.error('Error obtaining explainability info:', error);
-            return of({ success: false, message: 'Failed to obtain explainability info' });
-          })
-        );
+      map((response: any) => {
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error obtaining explainability info:', error);
+        return of({ success: false, message: 'Failed to obtain explainability info' });
+      })
+    );
+  }
+
+  getFinalRecommendation(loanApplicationId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/esg-ai-recommendation/final/${loanApplicationId}`).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error obtaining final recommendation:', error);
+        return of({ success: false, message: 'Failed to obtain final recommendation' });
+      })
+    );
   }
 }
