@@ -42,6 +42,7 @@ export class EsgAssessmentsComponent {
   isReadOnly: boolean = false;
   explainability: any = null;
   finalRecommendation: any = null;
+  mlSignals: any = null;
   finalRiskLabel = '';
   finalRiskClass = '';
 
@@ -251,6 +252,7 @@ export class EsgAssessmentsComponent {
     this.aiService.getFinalRecommendation(this.loanApplicationId).subscribe({
       next: (res: any) => {
         this.finalRecommendation = res;
+        this.mlSignals = res.mlSignals;
         this.mapFinalRisk(res.riskLevel);
       },
       error: (err: any) => console.error('Final recommendation load failed', err)
@@ -272,4 +274,15 @@ export class EsgAssessmentsComponent {
         this.finalRiskClass = 'p-chip-success';
     }
   }
+
+  getMlRiskClass(riskBand: string): string {
+  switch (riskBand) {
+    case 'High':
+      return 'p-chip-danger';
+    case 'Medium':
+      return 'p-chip-warning';
+    default:
+      return 'p-chip-success';
+  }
+}
 }

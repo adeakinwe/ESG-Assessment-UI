@@ -152,6 +152,52 @@
 
   </div>
 
+  <!-- ===============================
+   ML RISK SIGNALS (ADVISORY)
+================================ -->
+<div class="ml-signal-card" *ngIf="finalRecommendation?.mlSignals">
+
+  <div class="ml-signal-header">
+    <h3>📊 ML Risk Signals</h3>
+    <p-chip
+      [label]="finalRecommendation.mlSignals.riskBand + ' ML Risk'"
+      [styleClass]="getMlRiskClass(finalRecommendation.mlSignals.riskBand)">
+    </p-chip>
+  </div>
+
+  <div class="ml-signal-grid">
+
+    <div class="ml-metric">
+      <span>Anomaly Score</span>
+      <strong>{{ finalRecommendation.mlSignals.anomalyScore | number:'1.2-2' }}</strong>
+      <p-progressBar
+        [value]="finalRecommendation.mlSignals.anomalyScore * 100"
+        [showValue]="false">
+      </p-progressBar>
+    </div>
+
+    <div class="ml-metric">
+      <span>Risk Probability</span>
+      <strong>{{ finalRecommendation.mlSignals.riskProbability * 100 | number:'1.0-0' }}%</strong>
+      <p-progressBar
+        [value]="finalRecommendation.mlSignals.riskProbability * 100"
+        [showValue]="false">
+      </p-progressBar>
+    </div>
+
+    <div class="ml-flag" *ngIf="finalRecommendation.mlSignals.isOutlier">
+      <i class="pi pi-exclamation-circle"></i>
+      This application exhibits anomalous ESG patterns compared to peer loans.
+    </div>
+
+  </div>
+
+  <div class="ml-footer">
+    ML signals are probabilistic indicators and support — not replace — human judgment.
+  </div>
+
+</div>
+
   <div class="esg-container" [class.read-only]="isReadOnly">
 
     <p-card *ngFor="let item of checklistItems" class="esg-card" [ngClass]="{ 'locked-card': isReadOnly }">

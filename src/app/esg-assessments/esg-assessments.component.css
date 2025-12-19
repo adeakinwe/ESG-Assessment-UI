@@ -769,3 +769,67 @@
   display: block;
   margin-bottom: 0.5rem;
 }
+
+/* ===============================
+   ML SIGNALS
+================================ */
+
+.ml-signal-card {
+  margin: 2rem;
+  padding: 1.75rem 2rem;
+  background: #f6fdf7;
+  border-radius: 16px;
+  border-left: 6px solid #2ecc71;
+  box-shadow: 0 6px 18px rgba(0, 128, 0, 0.12);
+}
+
+.ml-signal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ml-signal-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0e7c3a;
+  font-weight: 700;
+}
+
+.ml-signal-grid {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.ml-metric span {
+  font-weight: 600;
+  color: #4d7c5f;
+}
+
+.ml-metric strong {
+  display: block;
+  font-size: 1.6rem;
+  color: #0e7c3a;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.ml-flag {
+  grid-column: 1 / -1;
+  padding: 1rem 1.25rem;
+  background: #fff4f4;
+  border-left: 6px solid #e74c3c;
+  border-radius: 12px;
+  color: #c0392b;
+  font-weight: 600;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ml-footer {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: #6b8f7a;
+}
