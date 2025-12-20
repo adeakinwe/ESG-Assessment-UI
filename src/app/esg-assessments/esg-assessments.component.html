@@ -258,7 +258,7 @@
             optionValue="responseValue"
             [(ngModel)]="selectedResponses[item.checklistItemId]"
             class="response-button"
-            [disabled]="true">
+            [disabled]="isReadOnly">
           </p-selectButton>
         </div>
 

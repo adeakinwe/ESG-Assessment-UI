@@ -9,6 +9,13 @@
 
     <button
       pButton
+      label="Back to Credit Applications"
+      icon="pi pi-arrow-left"
+      class="p-button-success proceed-btn"
+      (click)="backToCreditApplications()">
+    </button>
+    <button
+      pButton
       label="Proceed to ESG Assessment"
       icon="pi pi-arrow-right"
       class="p-button-success proceed-btn"
@@ -44,7 +51,7 @@
       </div>
 
       <div class="detail-row">
-        <span>Country</span>
+        <span>City</span>
         <strong>{{ selectedLoan.country }}</strong>
       </div>
     </div>

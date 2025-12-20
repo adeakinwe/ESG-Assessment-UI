@@ -15,6 +15,7 @@ import { ChipModule } from 'primeng/chip';
 import { AccordionModule } from 'primeng/accordion';
 import { LoanApplicationService } from '../services/loan-application.service';
 import { EsgAiRecommendationService } from '../services/esg-ai.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-esg-assessments',
   standalone: true,
@@ -54,6 +55,7 @@ export class EsgAssessmentsComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
     private confirmationService: ConfirmationService,
     private checklistService: ChecklistService,
     private loanApplicationService: LoanApplicationService,
@@ -159,7 +161,7 @@ export class EsgAssessmentsComponent {
     // 3️⃣ Submit once
     this.checklistService.submitAssessment(body).subscribe({
       next: (res: any) => {
-        alert(`${res.message}`);
+        this.toastr.success(`${res.message}`);
         // Reload summary after submission
         this.loadSummary();
       },

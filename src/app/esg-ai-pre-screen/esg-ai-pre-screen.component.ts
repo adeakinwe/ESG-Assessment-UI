@@ -102,4 +102,8 @@ export class EsgAiPreScreenComponent implements OnInit {
   proceedToAssessment() {
     this.router.navigate(['/esg-assessment', this.selectedLoan.loanApplicationId, this.selectedLoan.submittedForAppraisal]);
   }
+
+  backToCreditApplications() {
+    this.router.navigate(['/loan-applications']);
+  }
 }

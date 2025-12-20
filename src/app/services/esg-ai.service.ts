@@ -5,7 +5,7 @@ import { PreScreenRequest, EsgAiRecommendationDTO } from '../models/esg-ai.model
 
 @Injectable({ providedIn: 'root' })
 export class EsgAiRecommendationService {
-  private apiUrl = 'http://localhost:5010/api'; // adjust backend URL
+  private apiUrl = 'https://esg-risk-assessment-api-e8d8fsg7dgcbd7am.canadacentral-01.azurewebsites.net/api'; // adjust backend URL
 
   constructor(private http: HttpClient) { }
 

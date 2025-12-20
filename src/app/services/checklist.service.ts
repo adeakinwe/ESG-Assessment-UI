@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ChecklistItem } from '../models/checklist.model';
 @Injectable({ providedIn: 'root' })
 export class ChecklistService {
-  private apiUrl = 'http://localhost:5010/api/checklist';
+  private apiUrl = 'https://esg-risk-assessment-api-e8d8fsg7dgcbd7am.canadacentral-01.azurewebsites.net/api/checklist';
 
   constructor(private http: HttpClient) {}
 
