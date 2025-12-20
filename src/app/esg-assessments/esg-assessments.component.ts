@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ChipModule } from 'primeng/chip';
+import { AccordionModule } from 'primeng/accordion';
 import { LoanApplicationService } from '../services/loan-application.service';
 import { EsgAiRecommendationService } from '../services/esg-ai.service';
 @Component({
@@ -26,7 +27,8 @@ import { EsgAiRecommendationService } from '../services/esg-ai.service';
     SelectButtonModule,
     ConfirmDialogModule,
     ProgressBarModule,
-    ChipModule
+    ChipModule,
+    AccordionModule
   ],
   templateUrl: './esg-assessments.component.html',
   styleUrl: './esg-assessments.component.css'

@@ -833,3 +833,60 @@
   font-size: 0.85rem;
   color: #6b8f7a;
 }
+
+/* Accordion subtitle */
+.accordion-subtitle {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+
+/* Reduce visual noise in review mode */
+.read-only .esg-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  opacity: 0.95;
+}
+
+/* ===============================
+   GREEN ACCORDION HEADERS
+================================ */
+
+.accordion-header.green {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.accordion-header.green i {
+  font-size: 1.3rem;
+  color: #1e8449;
+}
+
+.accordion-header.green .title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #145a32;
+  letter-spacing: 0.3px;
+}
+
+.accordion-header.green .subtitle {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+/* PrimeNG accordion header override */
+.p-accordion .p-accordion-header-link {
+  background: linear-gradient(135deg, #e8f8f5, #ffffff);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight
+  .p-accordion-header-link {
+  background: linear-gradient(135deg, #d4efdf, #ffffff);
+  box-shadow: 0 6px 18px rgba(30, 132, 73, 0.15);
+}

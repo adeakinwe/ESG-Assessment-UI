@@ -68,15 +68,25 @@
     </div>
 
   </div>
-  <!-- ===============================
-     ESG EXPLAINABILITY SECTION
+<!-- ===============================
+     ESG EXPLAINABILITY (REVIEW MODE)
 ================================ -->
-  <div class="esg-explainability" *ngIf="explainability">
+<p-accordion
+  *ngIf="explainability"
+  [multiple]="true"
+  [activeIndex]="isReadOnly ? [] : [0]">
 
-    <div class="explainability-header">
-      <h3>🌱 ESG Explainability</h3>
-      <p>How individual responses influenced the ESG risk outcome</p>
-    </div>
+  <p-accordionTab>
+<ng-template pTemplate="header">
+  <div class="accordion-header green">
+    <i class="pi pi-leaf"></i>
+    <span class="title">ESG Explainability</span>
+    <span class="subtitle">
+      How responses influenced the ESG risk outcome
+    </span>
+  </div>
+</ng-template>
+
 
     <!-- FLAGS -->
     <div class="explainability-flags" *ngIf="explainability.flags.length">
@@ -90,7 +100,9 @@
 
     <!-- ITEM LEVEL EXPLANATION -->
     <div class="explainability-grid">
-      <div class="explainability-card" *ngFor="let item of explainability.itemDetails"
+      <div
+        class="explainability-card"
+        *ngFor="let item of explainability.itemDetails"
         [ngClass]="item.impact.toLowerCase()">
 
         <div class="explainability-card-header">
@@ -127,8 +139,8 @@
         </li>
       </ul>
     </div>
-
-  </div>
+  </p-accordionTab>
+</p-accordion>
   <!-- ===============================
    FINAL AI RECOMMENDATION
 ================================ -->
@@ -198,37 +210,66 @@
 
 </div>
 
-  <div class="esg-container" [class.read-only]="isReadOnly">
+<!-- ===============================
+     ESG CHECKLIST (REVIEW MODE)
+================================ -->
+<p-accordion
+  [multiple]="true"
+  [activeIndex]="isReadOnly ? [] : [0]">
 
-    <p-card *ngFor="let item of checklistItems" class="esg-card" [ngClass]="{ 'locked-card': isReadOnly }">
-
-      <div class="esg-card-header">
-        <h3>{{ item.item }}</h3>
-        <span class="badge">{{ item.category }}</span>
-      </div>
-
-      <div class="esg-meta">
-        <span class="meta-label">Indicator:</span>
-        <span class="meta-value">{{ item.indicatorType }}</span>
-
-        <span class="meta-label">Weight:</span>
-        <span class="meta-value weight">{{ item.weight }}</span>
-      </div>
-
-      <div class="response-section">
-        <label class="response-label">Select Response:</label>
-
-        <p-selectButton [options]="item.responses" optionLabel="label" optionValue="responseValue"
-          [(ngModel)]="selectedResponses[item.checklistItemId]" class="response-button"
-          (onChange)="onSelect(item.checklistItemId)" [disabled]="isReadOnly">
-        </p-selectButton>
-      </div>
-
-    </p-card>
-
+  <p-accordionTab>
+<ng-template pTemplate="header">
+  <div class="accordion-header green">
+    <i class="pi pi-list-check"></i>
+    <span class="title">ESG Checklist Responses</span>
+    <span class="subtitle">
+      Completed assessment responses
+    </span>
   </div>
+</ng-template>
+
+
+    <div class="esg-container" [class.read-only]="isReadOnly">
+
+      <p-card
+        *ngFor="let item of checklistItems"
+        class="esg-card"
+        [ngClass]="{ 'locked-card': isReadOnly }">
+
+        <div class="esg-card-header">
+          <h3>{{ item.item }}</h3>
+          <span class="badge">{{ item.category }}</span>
+        </div>
+
+        <div class="esg-meta">
+          <span class="meta-label">Indicator:</span>
+          <span class="meta-value">{{ item.indicatorType }}</span>
+
+          <span class="meta-label">Weight:</span>
+          <span class="meta-value weight">{{ item.weight }}</span>
+        </div>
+
+        <div class="response-section">
+          <label class="response-label">Selected Response:</label>
+
+          <p-selectButton
+            [options]="item.responses"
+            optionLabel="label"
+            optionValue="responseValue"
+            [(ngModel)]="selectedResponses[item.checklistItemId]"
+            class="response-button"
+            [disabled]="true">
+          </p-selectButton>
+        </div>
+
+      </p-card>
+
+    </div>
+  </p-accordionTab>
+</p-accordion>
+
   <!-- Mandatory ESG Comment -->
-  <div class="assessment-comment-card">
+  <div class="assessment-comment-card" *ngIf="!isReadOnly">
     <label for="assessmentComment">
       <i class="pi pi-comment"></i>
       ESG Assessment Comment <span class="required">*</span>
@@ -236,7 +277,7 @@
 
     <textarea id="assessmentComment" pInputTextarea rows="4" [(ngModel)]="assessmentComment"
       placeholder="Provide justification, ESG considerations, and observations for this loan assessment..."
-      class="assessment-textarea" [disabled]="isReadOnly">
+      class="assessment-textarea">
   </textarea>
   </div>
 
