@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, delay, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Customer, LoanApplication, LoanApplicationResDTO } from '../models/loan-application.model';
 
 @Injectable({ providedIn: 'root' })
 export class LoanApplicationService {
-  private apiUrl = 'https://esg-risk-assessment-api-e8d8fsg7dgcbd7am.canadacentral-01.azurewebsites.net/api'; // adjust backend URL
+  private apiUrl = 'http://localhost:5010/api'; // adjust backend URL
 
   constructor(private http: HttpClient) {}
 

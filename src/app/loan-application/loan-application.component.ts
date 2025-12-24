@@ -101,7 +101,21 @@ export class LoanApplicationComponent implements OnInit {
 
     const payload: LoanApplication = { ...this.form.getRawValue() };
     this.service.submitLoanApplication(payload).subscribe({
-      next: () => { this.form.reset(), this.toastr.success('Loan application submitted successfully')},
+      next: (res) => {
+        this.form.reset(),
+        this.toastr.success(
+          `Green loan application submitted successfully.<br/>
+   Reference Number: <strong style="color:#2e7d32;">${res.result}</strong>`,
+          'Submission Complete',
+          {
+            enableHtml: true,
+            timeOut: 0,              // disables auto-close
+            extendedTimeOut: 0,
+            closeButton: true,       // shows Close (X) button
+            tapToDismiss: false      // user must click Close
+          }
+        );
+      },
       error: () => this.toastr.error('An error occurred while submitting')
     })
   }
