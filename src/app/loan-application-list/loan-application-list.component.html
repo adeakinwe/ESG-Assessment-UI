@@ -26,6 +26,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="applicationDate">Date <p-sortIcon field="applicationDate"></p-sortIcon></th>
+        <th pSortableColumn="applRefNumber">Ref. Number <p-sortIcon field="applRefNumber"></p-sortIcon></th>
         <th pSortableColumn="customerName">Customer <p-sortIcon field="customerName"></p-sortIcon></th>
         <th pSortableColumn="productName">Product <p-sortIcon field="productName"></p-sortIcon></th>
         <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
@@ -40,6 +41,7 @@
     <ng-template pTemplate="body" let-row>
       <tr class="table-row" (click)="openPreScreen(row)">
         <td>{{ row.applicationDate | date:'dd-MMM-yyyy' }}</td>
+        <td>{{ row.applRefNumber }}</td>
         <td>{{ row.customerName }}</td>
         <td>{{ row.productName }}</td>
         <td>{{ row.amount | number:'1.0-0' }}</td>
