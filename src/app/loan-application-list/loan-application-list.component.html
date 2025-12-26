@@ -39,7 +39,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-row>
-      <tr class="table-row" (click)="openPreScreen(row)">
+      <tr class="table-row hint-row" (click)="openPreScreen(row)">
         <td>{{ row.applicationDate | date:'dd-MMM-yyyy' }}</td>
         <td>{{ row.applRefNumber }}</td>
         <td>{{ row.customerName }}</td>

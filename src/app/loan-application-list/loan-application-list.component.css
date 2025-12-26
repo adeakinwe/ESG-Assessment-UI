@@ -164,3 +164,33 @@
   display: inline-block;
   text-transform: capitalize;
 }
+
+/* ===============================
+   ROW HOVER HINT
+================================*/
+.hint-row {
+  position: relative;
+  cursor: pointer;
+}
+
+.hint-row::after {
+  content: "Click to open ESG Pre-Screening";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: #2e7d32;
+  background: rgba(212, 239, 223, 0.95);
+  padding: 4px 10px;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+
+.hint-row:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-4px);
+}
