@@ -1,3 +1,4 @@
 {
-    "baseApiUrl": "http://localhost:5010/api"
+  "baseApiUrl": "http://localhost:5010/api",
+  "mlServiceUrl": "http://localhost:9696"
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoanApplicationService } from '../services/loan-application.service';
 import { EsgAiRecommendationService } from '../services/esg-ai.service';
 import { LoanApplicationResDTO } from '../models/loan-application.model';
-import { EsgAiRecommendationDTO } from '../models/esg-ai.model';
+import { EsgAiRecommendationDTO, MLPredictRequestDTO } from '../models/esg-ai.model';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -43,7 +43,8 @@ export class EsgAiPreScreenComponent implements OnInit {
     this.loanService.getLoanApplicationsById(loanId).subscribe({
       next: loan => {
         this.selectedLoan = loan;
-        this.getPreScreenRecommendation();
+        this.getPreScreenRecommendation(); //rule-based pre-screening
+        //this.getMlRiskPrediction();  // real ML service inference
       },
       error: err => {
         console.error('Failed to load loan', err);
@@ -105,5 +106,31 @@ export class EsgAiPreScreenComponent implements OnInit {
 
   backToCreditApplications() {
     this.router.navigate(['/loan-applications']);
+  }
+
+  getMlRiskPrediction() {
+    let predictRequestPayload : MLPredictRequestDTO = {
+      "AGE_GROUP": "Youth",
+      "YEARS_EMPLOYED_GROUP": "1-5 yrs",
+      "PHONE_CHANGE_GROUP": "moderate",
+      "REGION_RATING_CLIENT_W_CITY": 2,
+      "REGION_RATING_CLIENT": 1,
+      "EXT_SOURCE_3": 0.789,
+      "EXT_SOURCE_2": 0.621,
+      "EXT_SOURCE_1": 0.513,
+      "FLOORS_MAX_AVG": 0.8
+    }
+
+    this.aiService.getMlRiskPrediction(predictRequestPayload).subscribe({
+      next: res => {
+        this.aiRecommendation = res;
+        this.mapRisk(res.riskLevel);
+        this.loading = false;
+      },
+      error: err => {
+        console.error('Failed to get AI recommendation', err);
+        this.loading = false;
+      }
+    });
   }
 }

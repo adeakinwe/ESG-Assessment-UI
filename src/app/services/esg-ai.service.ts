@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
-import { PreScreenRequest, EsgAiRecommendationDTO } from '../models/esg-ai.model';
+import { PreScreenRequest, EsgAiRecommendationDTO, MLPredictRequestDTO } from '../models/esg-ai.model';
 import { AppConfigService } from './app-config.service';
 
 @Injectable({ providedIn: 'root' })
 export class EsgAiRecommendationService {
   private baseApiUrl: string;
-  //private baseApiUrl = 'https://esg-risk-assessment-api-e8d8fsg7dgcbd7am.canadacentral-01.azurewebsites.net/api'; // adjust backend URL
+  private mlServiceUrl: string;
 
   constructor(private http: HttpClient, private config: AppConfigService) {
     this.baseApiUrl = this.config.baseApiUrl;
+    this.mlServiceUrl = this.config.mlServiceUrl;
   }
 
   preScreen(request: PreScreenRequest): Observable<any> {
@@ -45,6 +46,18 @@ export class EsgAiRecommendationService {
       catchError(error => {
         console.error('Error obtaining final recommendation:', error);
         return of({ success: false, message: 'Failed to obtain final recommendation' });
+      })
+    );
+  }
+
+  getMlRiskPrediction(request: MLPredictRequestDTO): Observable<any> {
+    return this.http.post<MLPredictRequestDTO>(`${this.mlServiceUrl}/predict`, request).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error obtaining risk prediction from ML service:', error);
+        return of({ success: false, message: 'Failed to obtain risk prediction from ML service' });
       })
     );
   }

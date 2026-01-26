@@ -6,7 +6,6 @@ import { AppConfigService } from './app-config.service';
 @Injectable({ providedIn: 'root' })
 export class ChecklistService {
   private baseApiUrl: string;
-  //private baseApiUrl = 'https://esg-risk-assessment-api-e8d8fsg7dgcbd7am.canadacentral-01.azurewebsites.net/api/checklist';
 
   constructor(private http: HttpClient, private config: AppConfigService) {
     this.baseApiUrl = `${this.config.baseApiUrl}/checklist`;

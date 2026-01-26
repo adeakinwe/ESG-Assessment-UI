@@ -19,4 +19,8 @@ export class AppConfigService {
   get baseApiUrl(): string {
     return this.config?.baseApiUrl;
   }
+
+  get mlServiceUrl(): string {
+    return this.config?.mlServiceUrl;
+  }
 }

@@ -35,3 +35,15 @@ export interface EsgExplainabilityDTO {
   flags: string[];
   mitigationHints: string[];
 }
+
+export interface MLPredictRequestDTO {
+  AGE_GROUP: string;
+  YEARS_EMPLOYED_GROUP: string;
+  PHONE_CHANGE_GROUP: string;
+  REGION_RATING_CLIENT_W_CITY: number;
+  REGION_RATING_CLIENT: number;
+  EXT_SOURCE_3: number;
+  EXT_SOURCE_2: number;
+  EXT_SOURCE_1: number;
+  FLOORS_MAX_AVG: number;
+}

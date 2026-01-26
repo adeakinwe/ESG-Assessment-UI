@@ -8,7 +8,6 @@ import { AppConfigService } from './app-config.service';
 @Injectable({ providedIn: 'root' })
 export class LoanApplicationService {
   private baseApiUrl: string;
-  //private baseApiUrl = 'http://localhost:5010/api'; // adjust backend URL
 
   constructor(private http: HttpClient, private config: AppConfigService) {
     this.baseApiUrl = this.config.baseApiUrl;
