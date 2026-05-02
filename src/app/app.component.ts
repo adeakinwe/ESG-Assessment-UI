@@ -20,7 +20,8 @@ import { AppMenuComponent } from "./app.menu.component";
 <router-outlet></router-outlet>
 </div>
 </div>
-`, styles: [`
+`,
+  styles: [`
     .flex { display: flex; }
     .flex-1 { flex: 1; }
     .p-4 { padding: 1rem; }
@@ -28,4 +29,6 @@ import { AppMenuComponent } from "./app.menu.component";
     .overflow-auto { overflow: auto; }
   `]
 })
-export class AppComponent { }
+export class AppComponent {
+  title = 'ESG-Assessment-UI';
+}

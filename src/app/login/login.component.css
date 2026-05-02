@@ -1,0 +1,332 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a7f5e 0%, #2da872 50%, #1abc9c 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative background elements */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.login-container::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.login-card {
+  width: 100%;
+  max-width: 920px;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header styling */
+.login-card ::ng-deep .p-card-header {
+  background: linear-gradient(135deg, #1a7f5e 0%, #2da872 100%);
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: none;
+}
+
+.login-card h2 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Card content layout */
+.login-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.hero-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid rgba(45, 168, 114, 0.14);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(45, 168, 114, 0.12);
+  color: #16573f;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  width: fit-content;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  color: #143c28;
+}
+
+.hero-panel p {
+  margin: 0;
+  color: #3d5c4b;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-stats div {
+  background: rgba(45, 168, 114, 0.08);
+  border: 1px solid rgba(45, 168, 114, 0.15);
+  border-radius: 16px;
+  padding: 1rem 1.15rem;
+  min-width: 140px;
+}
+
+.hero-stats strong {
+  display: block;
+  font-size: 1.5rem;
+  color: #1a6e44;
+}
+
+.hero-stats span {
+  color: #3b5b4a;
+  font-size: 0.9rem;
+}
+
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.p-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.2rem;
+}
+
+.p-field label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #264032;
+  letter-spacing: 0.3px;
+}
+
+.p-field input[pInputText],
+.p-field input[type="text"],
+.p-field input[type="email"],
+.p-field input[type="password"] {
+  padding: 0.85rem 1rem;
+  border: 2px solid #def2e9;
+  border-radius: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.p-field input[pInputText]:focus,
+.p-field input[type="text"]:focus,
+.p-field input[type="email"]:focus,
+.p-field input[type="password"]:focus {
+  outline: none;
+  border-color: #2da872;
+  box-shadow: 0 0 0 4px rgba(45, 168, 114, 0.12);
+  background-color: #f3fcf6;
+}
+
+.p-field ::ng-deep .p-password {
+  width: 100%;
+}
+
+.p-field ::ng-deep .p-password input {
+  padding: 0.85rem 1rem;
+  border: 2px solid #def2e9;
+  border-radius: 14px;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.p-field ::ng-deep .p-password input:focus {
+  outline: none;
+  border-color: #2da872;
+  box-shadow: 0 0 0 4px rgba(45, 168, 114, 0.12);
+  background-color: #f3fcf6;
+}
+
+.p-field ::ng-deep .p-password .p-password-meter {
+  background-color: #e5f6ed;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.p-field ::ng-deep .p-password .p-password-strength {
+  border-radius: 4px;
+}
+
+.p-error {
+  color: #c33b29;
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+.login-card ::ng-deep .p-button {
+  background: linear-gradient(135deg, #2da872 0%, #1a7f5e 100%);
+  border: none;
+  padding: 0.95rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  margin-top: 0.5rem;
+}
+
+.login-card ::ng-deep .p-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1a7f5e 0%, #16634d 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(45, 168, 114, 0.24);
+}
+
+.login-card ::ng-deep .p-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(45, 168, 114, 0.15);
+}
+
+.login-card ::ng-deep .p-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-card ::ng-deep .p-button.p-button-text {
+  background: transparent;
+  color: #2da872;
+  padding: 0.95rem 1.5rem;
+}
+
+.login-card ::ng-deep .p-button.p-button-text:hover:not(:disabled) {
+  background: rgba(45, 168, 114, 0.12);
+  transform: translateY(-2px);
+}
+
+.login-card ::ng-deep .p-card-footer {
+  background: #f6fbf7;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #e3f3e7;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 860px) {
+  .login-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
+
+  .login-card ::ng-deep .p-card-body {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-panel h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+  }
+
+  .login-container::before,
+  .login-container::after {
+    width: 300px;
+    height: 300px;
+  }
+}
+
