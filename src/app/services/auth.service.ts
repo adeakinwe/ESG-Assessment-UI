@@ -21,7 +21,7 @@ export class AuthService {
     if (storedUser) {
       this.currentUserSubject.next(JSON.parse(storedUser));
     }
-    this.baseApiUrl = this.configService.baseApiUrl;
+    this.baseApiUrl = `${this.configService.baseApiUrl}/auth`;
   }
 
   login(credentials: LoginRequest): Observable<User> {

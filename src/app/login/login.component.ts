@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,7 +24,7 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   isLoginMode = true;
@@ -47,6 +47,12 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, { validators: this.passwordMatchValidator });
+  }
+
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   passwordMatchValidator(form: FormGroup) {
