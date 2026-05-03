@@ -36,10 +36,251 @@
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(20px);
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* Tree silhouettes */
+.tree-1, .tree-2 {
+  position: absolute;
+  opacity: 0.15;
+  filter: blur(1px);
+  z-index: 1;
+}
+
+.tree-1 {
+  top: 10%;
+  left: 5%;
+  width: 80px;
+  height: 120px;
+  background: linear-gradient(180deg, #2d5016 0%, #1a2e0f 100%);
+  clip-path: polygon(50% 0%, 45% 20%, 40% 40%, 35% 60%, 30% 80%, 25% 100%, 75% 100%, 70% 80%, 65% 60%, 60% 40%, 55% 20%);
+  animation: sway 8s ease-in-out infinite;
+}
+
+.tree-2 {
+  top: 20%;
+  right: 8%;
+  width: 60px;
+  height: 90px;
+  background: linear-gradient(180deg, #1a2e0f 0%, #0f1a08 100%);
+  clip-path: polygon(50% 0%, 45% 25%, 40% 50%, 35% 75%, 30% 100%, 70% 100%, 65% 75%, 60% 50%, 55% 25%);
+  animation: sway 10s ease-in-out infinite reverse;
+}
+
+/* Floating leaves and nature elements */
+.leaf-1, .leaf-2, .leaf-3, .leaf-4, .leaf-5 {
+  position: absolute;
+  opacity: 0.3;
+  animation: drift 15s linear infinite;
+  filter: blur(0.5px);
+}
+
+.leaf-1 {
+  top: 10%;
+  left: 10%;
+  width: 60px;
+  height: 80px;
+  background: linear-gradient(45deg, #2da872, #1a7f5e);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: 0s;
+}
+
+.leaf-2 {
+  top: 20%;
+  right: 15%;
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(45deg, #1abc9c, #2da872);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: 3s;
+}
+
+.leaf-3 {
+  bottom: 15%;
+  left: 20%;
+  width: 50px;
+  height: 70px;
+  background: linear-gradient(45deg, #27ae60, #1a7f5e);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: 6s;
+}
+
+.leaf-4 {
+  top: 60%;
+  right: 5%;
+  width: 35px;
+  height: 50px;
+  background: linear-gradient(45deg, #2ecc71, #2da872);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: 9s;
+}
+
+.leaf-5 {
+  bottom: 30%;
+  left: 70%;
+  width: 45px;
+  height: 65px;
+  background: linear-gradient(45deg, #1a7f5e, #27ae60);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: 12s;
+}
+
+/* Vine elements */
+.vine-1, .vine-2 {
+  position: absolute;
+  opacity: 0.2;
+  animation: sway 12s ease-in-out infinite;
+}
+
+.vine-1 {
+  top: 5%;
+  right: 8%;
+  width: 80px;
+  height: 120px;
+  background: linear-gradient(135deg, #2da872, #1a7f5e);
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  animation-delay: 0s;
+}
+
+.vine-2 {
+  bottom: 8%;
+  left: 5%;
+  width: 60px;
+  height: 90px;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  animation-delay: 6s;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(-3deg) scale(0.95);
+  }
+  75% {
+    transform: rotate(2deg) scale(1.02);
+  }
+}
+
+/* Organic blob shapes */
+.blob-1, .blob-2, .blob-3 {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: morph 20s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.blob-1 {
+  top: 30%;
+  left: 5%;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(45deg, #2da872, #1abc9c);
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  top: 70%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  animation-delay: 7s;
+}
+
+.blob-3 {
+  bottom: 10%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, #1a7f5e, #2da872);
+  animation-delay: 14s;
+}
+
+/* Particle effects */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: sparkle 8s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.particle:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 40%; left: 70%; animation-delay: 2s; }
+.particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 4s; }
+.particle:nth-child(4) { top: 80%; left: 80%; animation-delay: 6s; }
+.particle:nth-child(5) { top: 10%; left: 60%; animation-delay: 1s; }
+.particle:nth-child(6) { top: 50%; left: 10%; animation-delay: 3s; }
+.particle:nth-child(7) { top: 90%; left: 40%; animation-delay: 5s; }
+.particle:nth-child(8) { top: 30%; left: 90%; animation-delay: 7s; }
+
+@keyframes drift {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(90deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-10px) rotate(180deg);
+    opacity: 0.1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-20px) rotate(270deg);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(360deg);
+    opacity: 0.1;
+  }
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 50%;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    border-radius: 60% 40% 30% 70%;
+    transform: scale(1.1) rotate(90deg);
+  }
+  50% {
+    border-radius: 30% 60% 70% 40%;
+    transform: scale(0.9) rotate(180deg);
+  }
+  75% {
+    border-radius: 50% 30% 60% 70%;
+    transform: scale(1.05) rotate(270deg);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-100px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.8);
+    opacity: 0;
   }
 }
 
@@ -110,6 +351,16 @@
   font-weight: 700;
   letter-spacing: 0.02em;
   width: fit-content;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .hero-panel h1 {
@@ -117,6 +368,7 @@
   font-size: 2.25rem;
   line-height: 1.1;
   color: #143c28;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .hero-panel p {
@@ -124,12 +376,25 @@
   color: #3d5c4b;
   font-size: 1rem;
   line-height: 1.8;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 .hero-stats {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-stats div {
@@ -138,6 +403,11 @@
   border-radius: 16px;
   padding: 1rem 1.15rem;
   min-width: 140px;
+  transition: transform 0.3s ease;
+}
+
+.hero-stats div:hover {
+  transform: translateY(-5px);
 }
 
 .hero-stats strong {
@@ -156,6 +426,18 @@
   flex-direction: column;
   justify-content: center;
   gap: 1.2rem;
+  animation: slideInRight 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 form {
@@ -199,6 +481,19 @@ form {
   border-color: #2da872;
   box-shadow: 0 0 0 4px rgba(45, 168, 114, 0.12);
   background-color: #f3fcf6;
+  animation: inputFocus 0.3s ease;
+}
+
+@keyframes inputFocus {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .p-field ::ng-deep .p-password {
@@ -236,7 +531,13 @@ form {
   font-size: 0.82rem;
   margin-top: 0.35rem;
   font-weight: 500;
-  animation: fadeIn 0.3s ease;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }
 
 .login-card ::ng-deep .p-button {
@@ -249,6 +550,23 @@ form {
   transition: all 0.3s ease;
   letter-spacing: 0.5px;
   margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card ::ng-deep .p-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.login-card ::ng-deep .p-button:hover::before {
+  left: 100%;
 }
 
 .login-card ::ng-deep .p-button:hover:not(:disabled) {
@@ -327,6 +645,16 @@ form {
   .login-container::after {
     width: 300px;
     height: 300px;
+  }
+
+  .leaf-1, .leaf-2, .leaf-3, .leaf-4, .leaf-5 {
+    width: 30px;
+    height: 40px;
+  }
+
+  .blob-1, .blob-2, .blob-3 {
+    width: 60px;
+    height: 60px;
   }
 }
 
